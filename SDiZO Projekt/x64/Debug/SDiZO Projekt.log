@@ -1,5 +1,24 @@
-﻿  bidirectionalList.cpp
-  DynamicArray.cpp
-  main.cpp
-  Generating Code...
-  SDiZO Projekt.vcxproj -> C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\x64\Debug\SDiZO Projekt.exe
+﻿  Heap.cpp
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(5,7): error C2065: 'array': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(5,16): error C2065: 'NULL': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(6,4): error C2065: 'array': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(15,6): error C2653: 'bidirectionalList': is not a class or namespace name
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(18,3): error C2065: 'cout': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(18,34): error C2065: 'endl': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(19,3): error C2065: 'cout': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(19,42): error C2065: 'endl': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(20,3): error C2065: 'cout': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(20,39): error C2065: 'endl': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(21,3): error C2065: 'cout': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(21,41): error C2065: 'endl': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(22,3): error C2065: 'cin': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(24,3): error C2065: 'cout': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(24,11): error C2065: 'endl': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(28,13): error C3861: 'loadNumber': identifier not found
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(29,4): error C3861: 'add': identifier not found
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(31,4): error C3861: 'removeFromPeak': identifier not found
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(38,5): error C2653: 'bidirectionalList': is not a class or namespace name
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(40,2): error C2065: 'cout': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(41,2): error C2065: 'cin': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(42,2): error C2065: 'cout': undeclared identifier
+C:\Users\adamc\Desktop\Studia\4sem\SDiZO\Projekt\SDiZO Projekt\SDiZO Projekt\Heap.cpp(42,10): error C2065: 'endl': undeclared identifier

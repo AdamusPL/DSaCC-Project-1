@@ -2,6 +2,7 @@
 
 class bidirectionalList {
 public:
+	int size;
 	bidirectionalList();
 	void addOnStart(int);
 	void removeFromStart();
