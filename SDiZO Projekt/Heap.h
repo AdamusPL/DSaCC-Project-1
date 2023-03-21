@@ -2,11 +2,12 @@
 class Heap {
 public:
 	int* data;
-	int* isOccupied;
+	bool* isOccupied;
 	int size;
 
 	Heap();
 	void removeFromPeak();
 	void add(int);
 	void menu();
+	int loadNumber();
 };

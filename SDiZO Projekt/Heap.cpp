@@ -1,18 +1,33 @@
+#include <iostream>
 #include "Heap.h"
+using namespace std;
+
+Heap::Heap() {
+	size = 0;
+	data = new int[size];
+	isOccupied = new bool[size];
+}
 
 //w wariancie z tablic¹!!!!!!!!
-void Heap::add(int data) {
-	if (*array == NULL) {
-		*array = data;
+void Heap::add(int val) {
+	int* tempArray = new int[size+1];
+
+	if (size == 0) {
+		*data = val;
+		*isOccupied = true;
+	}
+
+	else {
 
 	}
+	size++;
 }
 
 void Heap::removeFromPeak() {
 	
 }
 
-void bidirectionalList::menu() { //metoda menu
+void Heap::menu() { //metoda menu
 	int option = 1;
 	while (option != 3) {
 		cout << "Co chcesz zrobic:" << endl;
@@ -35,7 +50,7 @@ void bidirectionalList::menu() { //metoda menu
 	}
 }
 
-int bidirectionalList::loadNumber() { //metoda do wpisywania liczb
+int Heap::loadNumber() { //metoda do wpisywania liczb
 	int number;
 	cout << "Podaj liczbe: ";
 	cin >> number;
