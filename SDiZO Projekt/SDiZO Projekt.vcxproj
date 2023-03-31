@@ -131,11 +131,16 @@
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ReadFromFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bidirectionalList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Heap.h" />
+    <ClInclude Include="ReadFromFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

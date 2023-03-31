@@ -9,5 +9,6 @@ public:
 	void removeFromPeak();
 	void add(int);
 	void menu();
+	void display();
 	int loadNumber();
 };

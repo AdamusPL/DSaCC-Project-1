@@ -27,6 +27,7 @@ void bidirectionalList::addOnStart(int data) {
 		p->next = head; //wsk. na kolejny element to wskaŸnik na by³¹ g³owê
 		head->prev = p; //ustawienie wskaŸnika na wczeœniejszy element poprzedniej g³owy na nowo dodany wêze³
 	}
+
 	head = p; //nowy wêze³ staje siê g³ow¹
 	size++;
 

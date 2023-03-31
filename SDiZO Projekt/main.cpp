@@ -1,19 +1,13 @@
 #include <iostream>
 #include "DynamicArray.h"
 #include "bidirectionalList.h"
+#include "Heap.h"
 using namespace std;
-
-/*void bidirectionalList() {}
-
-void binaryHeap(){}
-
-void BSTTree(){}
-
-void redBlackTree(){}*/
 
 int main() {
 	DynamicArray arr;
 	bidirectionalList biL;
+	Heap h;
 	int option = 1;
 	while (option != 6) {
 		cout << "Wybierz strukture:" << endl;
@@ -29,10 +23,11 @@ int main() {
 			arr.menu(); break;
 		case 2:
 			biL.menu(); break;
-			/*case 3: binaryHeap(); break;
-			case 4: BSTTree(); break;
-			case 5: redBlackTree(); break;
-			case 6: exit(0);*/
+		case 3: 
+			h.menu(); break;
+		/*case 4: BSTTree(); break;
+		case 5: redBlackTree(); break;*/
+		case 6: exit(0);
 		}
 
 	}
