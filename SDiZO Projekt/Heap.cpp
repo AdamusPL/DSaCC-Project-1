@@ -1,10 +1,18 @@
 #include <iostream>
 #include "Heap.h"
+#include "Tests.h"
 using namespace std;
 
 Heap::Heap() {
 	size = 0;
 	data = new int[size];
+	isOccupied = new bool[size];
+}
+
+//jakis error przy kompilacji
+Heap::Heap(int* d) {
+	size = 0;
+	data = d;
 	isOccupied = new bool[size];
 }
 
@@ -43,7 +51,7 @@ void Heap::add(int val) {
 
 //naprawiæ!!!!!!
 void Heap::removeFromPeak() {
-	if (size == 0) {
+	if (size == 0) { //jeœli rozmiar tablicy = 0
 		cout << "Kopiec jest pusty!" << endl;
 		return;
 	}
@@ -51,35 +59,61 @@ void Heap::removeFromPeak() {
 	int* tempData = new int[size - 1]; //tymczasowa tablica z danymi
 	tempData[0] = data[size-1]; //zamiana korzenia z ostatnim elementem tablicy
 
-	for (size_t i = 1; i < size-1; i++)
+	for (size_t i = 1; i < size-2; i++)
 	{
-		tempData[i] = data[i];
+		tempData[i] = data[i]; //przekopiowanie pozostalych wartosci z poprzedniego kopca
 	}
 
 	int k = 0;
-	while (k != size) {
-		if (tempData[2 * k + 1] < tempData[2 * k + 2]) { //sprawdzenie który syn jest wiêkszy
-			if (tempData[k] < tempData[2 * k + 2]) { //sprawdzenie 
+	while (k != size - 2) {
+		if ((2 * k + 1 < size-1) && (2 * k + 2 < size-1)) { //jeœli rodzic ma 2 synów
+			if (tempData[2 * k + 1] < tempData[2 * k + 2]) { //jeœli prawy syn wiêkszy
+				if (tempData[k] < tempData[2 * k + 2]) { //jeœli rodzic mniejszy od syna
+					swap(tempData[k], tempData[2 * k + 2]);
+					k = 2 * k + 2;
+					for (size_t i = 0; i < size-1; i++)
+					{
+						cout << "t[" << i << "]=" << data[i] << endl;
+					}
+					cout << endl;
+				}
+				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
+			}
+
+			else { //jeœli lewy syn wiêkszy
+				if (tempData[k] < tempData[2 * k + 1]) { //jeœli rodzic mniejszy od syna
+					swap(tempData[k], tempData[2 * k + 1]);
+					k = 2 * k + 1;
+					for (size_t i = 0; i < size-1; i++)
+					{
+						cout << "t[" << i << "]=" << data[i] << endl;
+					}
+					cout << endl;
+				}
+				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
+			}
+		}
+
+		else if ((2 * k + 1 >= size - 1) && (2 * k + 2 < size - 1)) { //jeœli tylko prawy syn istnieje
+			if (tempData[k] < tempData[2 * k + 2]) { //jeœli rodzic mniejszy od syna
 				swap(tempData[k], tempData[2 * k + 2]);
 				k = 2 * k + 2;
 			}
-			else break;
+			else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
 		}
-		
-		else {
-			if (tempData[k] < tempData[2 * k + 1]) {
+
+		else if ((2 * k + 1 < size - 1) && (2 * k + 2 >= size - 1)) { //jeœli tylko lewy syn istnieje
+			if (tempData[k] < tempData[2 * k + 1]) { //jeœli rodzic mniejszy od syna
 				swap(tempData[k], tempData[2 * k + 1]);
 				k = 2 * k + 1;
 			}
-			else break;
+			else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
 		}
-
-		
 	}
+
 
 	delete[] data;
 	data = tempData;
-	size++;
 }
 
 void Heap::display() {

@@ -9,7 +9,12 @@ ReadFromFile::ReadFromFile() {
 
 void ReadFromFile::read() {
 	fstream file;
-	file.open("test.txt", ios::in);
+	string filename;
+
+	cout << "Podaj nazwe pliku tekstowego:" << endl;
+	cin >> filename;
+
+	file.open(filename, ios::in);
 
 	file.close();
 }
