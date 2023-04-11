@@ -6,7 +6,7 @@ public:
 	int size;
 
 	Heap();
-	Heap(int* data);
+	Heap(int *data, int size);
 	void removeFromPeak();
 	void add(int);
 	void menu();

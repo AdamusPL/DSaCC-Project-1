@@ -2,5 +2,5 @@
 class AutoTests {
 
 public:
-	int* readFromFile();
+	int* readFromFile(int &size);
 };

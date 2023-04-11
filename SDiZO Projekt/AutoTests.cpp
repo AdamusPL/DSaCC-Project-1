@@ -3,10 +3,9 @@
 #include <fstream>
 using namespace std;
 
-int* AutoTests::readFromFile() {
+int* AutoTests::readFromFile(int &size) {
 	fstream file;
 	string filename;
-	int size;
 	
 	cout << "Podaj nazwe pliku" << endl;
 	cin >> filename;
@@ -28,6 +27,7 @@ int* AutoTests::readFromFile() {
 		}
 
 		file.close();
+
 		return tab;
 	}
 	else cout << "Blad pliku - otwarcia" << endl;

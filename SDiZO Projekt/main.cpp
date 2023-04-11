@@ -23,10 +23,11 @@ int main() {
 
 		if (optionT == 'A') {
 			AutoTests aT;
-			int* tab = aT.readFromFile();
+			int size=0;
+			int* tab = aT.readFromFile(size);
 			DynamicArray arr;
 			bidirectionalList biL;
-			Heap h=Heap(tab);
+			Heap h=Heap(tab,size);
 
 			switch (option) {
 			case 1:

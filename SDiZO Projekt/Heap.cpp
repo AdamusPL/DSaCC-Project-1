@@ -9,10 +9,9 @@ Heap::Heap() {
 	isOccupied = new bool[size];
 }
 
-//jakis error przy kompilacji
-Heap::Heap(int* d) {
-	size = 0;
+Heap::Heap(int *d, int s) {
 	data = d;
+	size = s;
 	isOccupied = new bool[size];
 }
 
