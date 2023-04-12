@@ -127,20 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AutoTests.cpp" />
     <ClCompile Include="bidirectionalList.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ReadFromFile.cpp" />
+    <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutoTests.h" />
     <ClInclude Include="bidirectionalList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Heap.h" />
-    <ClInclude Include="ReadFromFile.h" />
+    <ClInclude Include="Tests.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt" />
+    <Text Include="testJM.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
