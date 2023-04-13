@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Heap.h"
 #include "Tests.h"
+#include "Time.h"
 using namespace std;
 
 Heap::Heap() {
@@ -16,6 +17,8 @@ Heap::Heap(int *d, int s) {
 }
 
 void Heap::add(int val) {
+	Time timer;
+	timer.startTimer();
 	int* tempData = new int[size+1]; //tymczasowa tablica z danymi
 
 	if (size == 0) {
@@ -46,10 +49,13 @@ void Heap::add(int val) {
 	delete[] data;
 	data = tempData;
 	size++;
+	timer.stopTimer();
 }
 
 //naprawiæ!!!!!!
 void Heap::removeFromPeak() {
+	Time timer;
+	timer.startTimer();
 	if (size == 0) { //jeœli rozmiar tablicy = 0
 		cout << "Kopiec jest pusty!" << endl;
 		return;
@@ -113,6 +119,7 @@ void Heap::removeFromPeak() {
 	size--;
 	delete[] data;
 	data = tempData;
+	timer.stopTimer();
 }
 
 void Heap::display() {

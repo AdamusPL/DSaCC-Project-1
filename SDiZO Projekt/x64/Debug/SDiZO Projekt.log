@@ -1,1 +1,6 @@
-﻿  SDiZO Projekt.vcxproj -> C:\Users\adamc\Documents\GitHub\SDiZO-Project\x64\Debug\SDiZO Projekt.exe
+﻿  DynamicArray.cpp
+  Heap.cpp
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Heap.cpp(146,15): warning C4101: 'index': unreferenced local variable
+  bidirectionalList.cpp
+  Generating Code...
+  SDiZO Projekt.vcxproj -> C:\Users\adamc\Documents\GitHub\SDiZO-Project\x64\Debug\SDiZO Projekt.exe

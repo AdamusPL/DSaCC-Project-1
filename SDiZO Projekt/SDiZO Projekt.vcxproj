@@ -141,6 +141,7 @@
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Tests.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt" />

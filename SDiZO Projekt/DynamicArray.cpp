@@ -1,4 +1,5 @@
 #include "DynamicArray.h"
+#include "Time.h"
 using namespace std;
 
 DynamicArray::DynamicArray() {
@@ -7,6 +8,8 @@ DynamicArray::DynamicArray() {
 }
 
 void DynamicArray::addOnStart(int data) {
+	Time timer;
+	timer.startTimer();
 	int* tempArray = new int[size + 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 wiêkszym
 	*tempArray = data; //element 0. = data (dodawana wartoœæ)
 
@@ -20,9 +23,12 @@ void DynamicArray::addOnStart(int data) {
 	delete[] array; //zwolnienie pamieci
 
 	array = tempArray; //przypisanie tempArray do aktualnego arraya
+	timer.stopTimer();
 }
 
 void DynamicArray::removeFromStart() {
+	Time timer;
+	timer.startTimer();
 	int* tempArray = new int[size - 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 mniejszym
 	for (size_t i = 0; i < size; i++)
 	{
@@ -33,9 +39,12 @@ void DynamicArray::removeFromStart() {
 	delete[] array;
 
 	array = tempArray;
+	timer.stopTimer();
 }
 
 void DynamicArray::addOnEnd(int data) {
+	Time timer;
+	timer.startTimer();
 	int* tempArray = new int[size + 1];
 
 	for (size_t i = 0; i < size; i++)
@@ -50,10 +59,12 @@ void DynamicArray::addOnEnd(int data) {
 	delete[] array;
 
 	array = tempArray;
-
+	timer.stopTimer();
 }
 
 void DynamicArray::removeFromEnd() {
+	Time timer;
+	timer.startTimer();
 	int* tempArray = new int[size - 1];
 	for (size_t i = 0; i < size - 1; i++)
 	{
@@ -65,9 +76,12 @@ void DynamicArray::removeFromEnd() {
 	delete[] array;
 
 	array = tempArray;
+	timer.stopTimer();
 }
 
 void DynamicArray::insert(int index, int data) {
+	Time timer;
+	timer.startTimer();
 	int* tempArray = new int[size + 1];
 
 	for (size_t i = 0; i < index; i++)
@@ -87,9 +101,12 @@ void DynamicArray::insert(int index, int data) {
 	delete[] array;
 
 	array = tempArray;
+	timer.stopTimer();
 }
 
 void DynamicArray::removeFromChosen(int index) {
+	Time timer;
+	timer.startTimer();
 	int* tempArray = new int[size - 1];
 	for (size_t i = 0; i < index; i++)
 	{
@@ -108,6 +125,7 @@ void DynamicArray::removeFromChosen(int index) {
 	delete[] array;
 
 	array = tempArray;
+	timer.stopTimer();
 }
 
 
