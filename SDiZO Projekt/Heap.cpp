@@ -32,7 +32,7 @@ void Heap::add(int val) {
 
 		tempData[k] = val; //wpisanie nowej wartosci w ostatnie miejsce tablicy
 
-		while (k != 0) {
+		while (k != 0) { //naprawa kopca w górê
 			if (tempData[k] > tempData[(k - 1) / 2]) { //jesli wstawiany wêze³ jest wiêkszy od jego aktualnego ojca
 				swap(tempData[k], tempData[(k - 1) / 2]); //zamieniamy
 				k = (k - 1) / 2;
@@ -58,13 +58,13 @@ void Heap::removeFromPeak() {
 	int* tempData = new int[size - 1]; //tymczasowa tablica z danymi
 	tempData[0] = data[size-1]; //zamiana korzenia z ostatnim elementem tablicy
 
-	for (size_t i = 1; i < size-2; i++)
+	for (size_t i = 1; i < size-1; i++)
 	{
 		tempData[i] = data[i]; //przekopiowanie pozostalych wartosci z poprzedniego kopca
 	}
 
-	int k = 0;
-	while (k != size - 2) {
+	int k = 0; //naprawa kopca w dó³
+	while (2*k+2<=size-1) { //dopóki nie dotarliœmy do liœcia
 		if ((2 * k + 1 < size-1) && (2 * k + 2 < size-1)) { //jeœli rodzic ma 2 synów
 			if (tempData[2 * k + 1] < tempData[2 * k + 2]) { //jeœli prawy syn wiêkszy
 				if (tempData[k] < tempData[2 * k + 2]) { //jeœli rodzic mniejszy od syna
@@ -110,7 +110,7 @@ void Heap::removeFromPeak() {
 		}
 	}
 
-
+	size--;
 	delete[] data;
 	data = tempData;
 }
@@ -133,7 +133,7 @@ void Heap::menu() { //metoda menu
 		cout << "Co chcesz zrobic:" << endl;
 		cout << "1. Dodac element do kopca" << endl;
 		cout << "2. Usunac szczyt kopca" << endl;
-		cout << "3. Wyswielt elementy kopca" << endl;
+		cout << "3. Wyswietl elementy kopca" << endl;
 		cout << "4. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;

@@ -17,6 +17,7 @@ int main() {
 		cout << "5. Drzewo czerwono-czarne" << endl;
 		cout << "6. Wyjscie" << endl;
 		cin >> option; //wybór opcji
+		if (option == 6) exit(0);
 
 		Tests t;
 		char optionT = t.menu();
@@ -38,7 +39,6 @@ int main() {
 				h.menu(); break;
 				/*case 4: BSTTree(); break;
 				case 5: redBlackTree(); break;*/
-			case 6: exit(0);
 			}
 		}
 
@@ -55,7 +55,6 @@ int main() {
 				h.menu(); break;
 				/*case 4: BSTTree(); break;
 				case 5: redBlackTree(); break;*/
-			case 6: exit(0);
 			}
 		}
 
