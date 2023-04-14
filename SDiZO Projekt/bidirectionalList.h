@@ -4,6 +4,7 @@ class bidirectionalList {
 public:
 	int size;
 	bidirectionalList();
+	void readData(int* tab, int size);
 	void addOnStart(int);
 	void removeFromStart();
 	void addOnEnd(int);

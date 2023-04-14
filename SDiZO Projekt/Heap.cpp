@@ -4,13 +4,13 @@
 #include "Time.h"
 using namespace std;
 
-Heap::Heap() {
+Heap::Heap() { //konstruktor dla kopca do testów manualnych
 	size = 0;
 	data = new int[size];
 	isOccupied = new bool[size];
 }
 
-Heap::Heap(int *d, int s) {
+Heap::Heap(int *d, int s) { //konstruktor dla kopca, gdy wybierzemy testy automatyczne
 	data = d;
 	size = s;
 	isOccupied = new bool[size];
@@ -52,7 +52,6 @@ void Heap::add(int val) {
 	timer.stopTimer();
 }
 
-//naprawiæ!!!!!!
 void Heap::removeFromPeak() {
 	Time timer;
 	timer.startTimer();

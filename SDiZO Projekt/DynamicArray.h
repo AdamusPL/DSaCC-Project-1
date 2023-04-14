@@ -9,6 +9,7 @@ protected:
 
 public:
 	DynamicArray();
+	DynamicArray(int *data, int size);
 	void addOnStart(int);
 	void removeFromStart();
 	void addOnEnd(int);

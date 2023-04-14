@@ -26,7 +26,7 @@ int main() {
 			AutoTests aT;
 			int size=0;
 			int* tab = aT.readFromFile(size);
-			DynamicArray arr;
+			DynamicArray arr=DynamicArray(tab,size);
 			bidirectionalList biL;
 			Heap h=Heap(tab,size);
 
@@ -34,6 +34,7 @@ int main() {
 			case 1:
 				arr.menu(); break;
 			case 2:
+				biL.readData(tab,size); //wczytanie danych testowych do listy dwukierunkowej
 				biL.menu(); break;
 			case 3:
 				h.menu(); break;

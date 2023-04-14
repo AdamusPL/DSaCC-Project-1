@@ -7,6 +7,11 @@ DynamicArray::DynamicArray() {
 	array = new int[size];
 }
 
+DynamicArray::DynamicArray(int *d, int s) {
+	size = s;
+	array = d;
+}
+
 void DynamicArray::addOnStart(int data) {
 	Time timer;
 	timer.startTimer();
@@ -29,16 +34,23 @@ void DynamicArray::addOnStart(int data) {
 void DynamicArray::removeFromStart() {
 	Time timer;
 	timer.startTimer();
-	int* tempArray = new int[size - 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 mniejszym
-	for (size_t i = 0; i < size; i++)
-	{
-		tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+
+	if (size == 0) {
+		cout << "Tablica jest pusta!" << endl;
 	}
-	size--;
 
-	delete[] array;
+	else {
+		int* tempArray = new int[size - 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 mniejszym
+		for (size_t i = 0; i < size; i++)
+		{
+			tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
+		size--;
 
-	array = tempArray;
+		delete[] array;
+
+		array = tempArray;
+	}
 	timer.stopTimer();
 }
 
@@ -65,69 +77,90 @@ void DynamicArray::addOnEnd(int data) {
 void DynamicArray::removeFromEnd() {
 	Time timer;
 	timer.startTimer();
-	int* tempArray = new int[size - 1];
-	for (size_t i = 0; i < size - 1; i++)
-	{
-		tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+
+	if (size == 0) {
+		cout << "Tablica jest pusta!" << endl;
 	}
 
-	size--;
+	else {
+		int* tempArray = new int[size - 1];
+		for (size_t i = 0; i < size - 1; i++)
+		{
+			tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
 
-	delete[] array;
+		size--;
 
-	array = tempArray;
+		delete[] array;
+
+		array = tempArray;
+	}
+
 	timer.stopTimer();
 }
 
 void DynamicArray::insert(int index, int data) {
 	Time timer;
 	timer.startTimer();
-	int* tempArray = new int[size + 1];
 
-	for (size_t i = 0; i < index; i++)
-	{
-		tempArray[i] = array[i]; //przypisanie wartosci do tablicy tymczasowej do podanego indeksu
+	if (index > size || index < 0) { //jeœli podano ujemny indeks lub indeks spoza zakresu
+		cout << "Niepoprawny indeks!" << endl;
 	}
 
-	tempArray[index] = data; //wstawienie nowej wartoœci do arraya
+	else {
+		int* tempArray = new int[size + 1];
 
-	for (size_t i = index; i < size; i++)
-	{
-		tempArray[i + 1] = array[i]; //wype³nienie pozosta³ymi
+		for (size_t i = 0; i < index; i++)
+		{
+			tempArray[i] = array[i]; //przypisanie wartosci do tablicy tymczasowej do podanego indeksu
+		}
+
+		tempArray[index] = data; //wstawienie nowej wartoœci do arraya
+
+		for (size_t i = index; i < size; i++)
+		{
+			tempArray[i + 1] = array[i]; //wype³nienie pozosta³ymi
+		}
+
+		size++;
+
+		delete[] array;
+
+		array = tempArray;
 	}
-
-	size++;
-
-	delete[] array;
-
-	array = tempArray;
+	
 	timer.stopTimer();
 }
 
 void DynamicArray::removeFromChosen(int index) {
 	Time timer;
 	timer.startTimer();
-	int* tempArray = new int[size - 1];
-	for (size_t i = 0; i < index; i++)
-	{
-		tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+
+	if (index >= size || index < 0) { //jeœli podano ujemny indeks lub spoza zakresu
+		cout << "Niepoprawny indeks!" << endl;
 	}
 
-	size--;
+	else {
+		int* tempArray = new int[size - 1];
+		for (size_t i = 0; i < index; i++)
+		{
+			tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
 
-	//6,5,4,3
+		size--;
 
-	for (size_t i = index; i < size; i++)
-	{
-		tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+		for (size_t i = index; i < size; i++)
+		{
+			tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
+
+		delete[] array;
+
+		array = tempArray;
 	}
 
-	delete[] array;
-
-	array = tempArray;
 	timer.stopTimer();
 }
-
 
 void DynamicArray::display() {
 	if (size == 0) {
@@ -136,7 +169,7 @@ void DynamicArray::display() {
 	else {
 		for (size_t i = 0; i < size; i++)
 		{
-			cout << array[i] << endl;
+			cout << "t[" << i << "]=" << array[i] << endl;
 			//cout<<*(array+i)<<endl;
 		}
 	}

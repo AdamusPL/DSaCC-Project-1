@@ -15,6 +15,13 @@ bidirectionalList::bidirectionalList() {
 
 ElemList* head = nullptr; //head na poczatku nullptr
 
+void bidirectionalList::readData(int *tab, int s) { //dodanie elementów do listy z pliku tekstowego, gdy testujemy automatycznie
+	size = s;
+	for (int i = 0; i < s; i++) {
+		addOnEnd(tab[i]);
+	}
+}
+
 void bidirectionalList::addOnStart(int data) {
 	Time timer;
 	timer.startTimer();
@@ -116,6 +123,13 @@ void bidirectionalList::removeFromEnd() {
 void bidirectionalList::insert(int index, int data) {
 	Time timer;
 	timer.startTimer();
+
+	if (index > size || index < 0) {
+		cout << "Niepoprawny indeks!" << endl;
+		timer.stopTimer();
+		return;
+	}
+
 	ElemList* p = new ElemList; //nowy "wêze³"
 	p->data = data;
 
@@ -130,7 +144,7 @@ void bidirectionalList::insert(int index, int data) {
 			addOnStart(data);
 		}
 
-		else if (index == size - 1) {
+		else if (index == size) {
 			addOnEnd(data);
 		}
 
@@ -160,8 +174,12 @@ void bidirectionalList::removeFromChosen(int index) {
 	Time timer;
 	timer.startTimer();
 
-	if (head == nullptr) { 
+	if (head == nullptr) { //jeœli g³owa jest pusta
 		cout << "Lista jest pusta!" << endl;
+	}
+
+	else if (index >= size || index<0) { //jeœli podano niepoprawny indeks
+		cout << "Taki indeks w tablicy nie istnieje!" << endl;
 	}
 
 	else {
@@ -186,8 +204,9 @@ void bidirectionalList::removeFromChosen(int index) {
 			free(iterator->next);
 			iterator->next = temp;
 		}
+		size++;
 	}
-	size++;
+
 	timer.stopTimer();
 }
 
