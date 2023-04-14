@@ -176,9 +176,26 @@ void DynamicArray::display() {
 	cout << endl;
 }
 
+void DynamicArray::find(int val) {
+	Time timer;
+	timer.startTimer();
+
+	for (int i = 0; i < size; i++) {
+		if (val == array[i]) {
+			cout << val << " znajduje sie na indeksie: " << i << endl;
+			timer.stopTimer();
+			return;
+		}
+	}
+	
+	cout << "Nie ma takiej wartosci w tablicy!" << endl;
+
+	timer.stopTimer();
+}
+
 void DynamicArray::menu() { //metoda menu
 	int option = 1;
-	while (option != 8) {
+	while (option != 9) {
 		cout << "Co chcesz zrobic:" << endl;
 		cout << "1. Dodac element na poczatek" << endl;
 		cout << "2. Dodac element na koniec" << endl;
@@ -187,7 +204,8 @@ void DynamicArray::menu() { //metoda menu
 		cout << "5. Usunac element z konca" << endl;
 		cout << "6. Usunac element z konkretnej pozycji" << endl;
 		cout << "7. Wyswietlic tablice" << endl;
-		cout << "8. Inna struktura danych" << endl;
+		cout << "8. Znajdz element w tablicy" << endl;
+		cout << "9. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -212,7 +230,10 @@ void DynamicArray::menu() { //metoda menu
 			removeFromChosen(index); break;
 		case 7:
 			display(); break;
-		case 8: return;
+		case 8:
+			number = loadNumber();
+			find(number); break;
+		case 9: return;
 		}
 	}
 }

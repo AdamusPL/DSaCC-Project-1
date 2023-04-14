@@ -133,14 +133,32 @@ void Heap::display() {
 	}
 }
 
+void Heap::find(int val) {
+	Time timer;
+	timer.startTimer();
+
+	for (int i = 0; i < size; i++) {
+		if (val == data[i]) {
+			cout << val << " znajduje sie na indeksie: " << i << endl;
+			timer.stopTimer();
+			return;
+		}
+	}
+
+	cout << "Nie ma takiej wartosci w tablicy!" << endl;
+
+	timer.stopTimer();
+}
+
 void Heap::menu() { //metoda menu
 	int option = 1;
-	while (option != 4) {
+	while (option != 5) {
 		cout << "Co chcesz zrobic:" << endl;
 		cout << "1. Dodac element do kopca" << endl;
 		cout << "2. Usunac szczyt kopca" << endl;
 		cout << "3. Wyswietl elementy kopca" << endl;
-		cout << "4. Inna struktura danych" << endl;
+		cout << "4. Znajdz element w kopcu" << endl;
+		cout << "5. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -154,6 +172,9 @@ void Heap::menu() { //metoda menu
 		case 3:
 			display(); break;
 		case 4:
+			number = loadNumber();
+			find(number); break;
+		case 5:
 			return;
 		}
 	}

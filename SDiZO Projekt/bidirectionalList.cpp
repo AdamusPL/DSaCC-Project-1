@@ -245,9 +245,28 @@ void bidirectionalList::displayFromEnd() {
 	}
 }
 
+void bidirectionalList::find(int val) {
+	Time timer;
+	timer.startTimer();
+	int position = 0;
+	ElemList* iterator = new ElemList;
+	iterator = head;
+	while (iterator != NULL) {
+		if (val == iterator->data) {
+			cout << val << " znajduje sie na pozycji: " << position << " od lewej strony" << endl;
+			timer.stopTimer();
+			return;
+		}
+		position++;
+		iterator = iterator->next;
+	}
+	cout << "Taka wartosc nie wystepuje w liscie!" << endl;
+	timer.stopTimer();
+}
+
 void bidirectionalList::menu() { //metoda menu
 	int option = 1;
-	while (option != 9) {
+	while (option != 10) {
 		cout << "Co chcesz zrobic:" << endl;
 		cout << "1. Dodac element na poczatek" << endl;
 		cout << "2. Dodac element na koniec" << endl;
@@ -257,7 +276,8 @@ void bidirectionalList::menu() { //metoda menu
 		cout << "6. Usunac element z konkretnej pozycji" << endl;
 		cout << "7. Wyswietlic liste od poczatku" << endl;
 		cout << "8. Wyswietlic liste od konca" << endl;
-		cout << "9. Inna struktura danych" << endl;
+		cout << "9. Znajdz element w liscie" << endl;
+		cout << "10. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -284,7 +304,10 @@ void bidirectionalList::menu() { //metoda menu
 			displayFromStart(); break;
 		case 8:
 			displayFromEnd(); break;
-		case 9: return;
+		case 9:
+			number = loadNumber();
+			find(number); break;
+		case 10: return;
 		}
 	}
 }
