@@ -1,5 +1,4 @@
 #include "DynamicArray.h"
-#include "Time.h"
 using namespace std;
 
 DynamicArray::DynamicArray() {
@@ -13,8 +12,6 @@ DynamicArray::DynamicArray(int *d, int s) {
 }
 
 void DynamicArray::addOnStart(int data) {
-	Time timer;
-	timer.startTimer();
 	int* tempArray = new int[size + 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 wiêkszym
 	*tempArray = data; //element 0. = data (dodawana wartoœæ)
 
@@ -28,12 +25,9 @@ void DynamicArray::addOnStart(int data) {
 	delete[] array; //zwolnienie pamieci
 
 	array = tempArray; //przypisanie tempArray do aktualnego arraya
-	timer.stopTimer();
 }
 
 void DynamicArray::removeFromStart() {
-	Time timer;
-	timer.startTimer();
 
 	if (size == 0) {
 		cout << "Tablica jest pusta!" << endl;
@@ -51,12 +45,9 @@ void DynamicArray::removeFromStart() {
 
 		array = tempArray;
 	}
-	timer.stopTimer();
 }
 
 void DynamicArray::addOnEnd(int data) {
-	Time timer;
-	timer.startTimer();
 	int* tempArray = new int[size + 1];
 
 	for (size_t i = 0; i < size; i++)
@@ -71,12 +62,9 @@ void DynamicArray::addOnEnd(int data) {
 	delete[] array;
 
 	array = tempArray;
-	timer.stopTimer();
 }
 
 void DynamicArray::removeFromEnd() {
-	Time timer;
-	timer.startTimer();
 
 	if (size == 0) {
 		cout << "Tablica jest pusta!" << endl;
@@ -95,13 +83,9 @@ void DynamicArray::removeFromEnd() {
 
 		array = tempArray;
 	}
-
-	timer.stopTimer();
 }
 
 void DynamicArray::insert(int index, int data) {
-	Time timer;
-	timer.startTimer();
 
 	if (index > size || index < 0) { //jeœli podano ujemny indeks lub indeks spoza zakresu
 		cout << "Niepoprawny indeks!" << endl;
@@ -128,13 +112,10 @@ void DynamicArray::insert(int index, int data) {
 
 		array = tempArray;
 	}
-	
-	timer.stopTimer();
+
 }
 
 void DynamicArray::removeFromChosen(int index) {
-	Time timer;
-	timer.startTimer();
 
 	if (index >= size || index < 0) { //jeœli podano ujemny indeks lub spoza zakresu
 		cout << "Niepoprawny indeks!" << endl;
@@ -159,7 +140,6 @@ void DynamicArray::removeFromChosen(int index) {
 		array = tempArray;
 	}
 
-	timer.stopTimer();
 }
 
 void DynamicArray::display() {
@@ -177,20 +157,16 @@ void DynamicArray::display() {
 }
 
 void DynamicArray::find(int val) {
-	Time timer;
-	timer.startTimer();
 
 	for (int i = 0; i < size; i++) {
 		if (val == array[i]) {
 			cout << val << " znajduje sie na indeksie: " << i << endl;
-			timer.stopTimer();
 			return;
 		}
 	}
 	
 	cout << "Nie ma takiej wartosci w tablicy!" << endl;
 
-	timer.stopTimer();
 }
 
 void DynamicArray::menu() { //metoda menu

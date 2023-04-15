@@ -130,7 +130,7 @@
     <ClCompile Include="AutoTests.cpp" />
     <ClCompile Include="ManualTests.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
-    <ClCompile Include="ReadFile.cpp" />
+    <ClCompile Include="RWFile.cpp" />
     <ClCompile Include="bidirectionalList.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="Heap.cpp" />
@@ -141,7 +141,7 @@
     <ClInclude Include="AutoTests.h" />
     <ClInclude Include="ManualTests.h" />
     <ClInclude Include="RandomGenerator.h" />
-    <ClInclude Include="ReadFile.h" />
+    <ClInclude Include="RWFile.h" />
     <ClInclude Include="bidirectionalList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Heap.h" />

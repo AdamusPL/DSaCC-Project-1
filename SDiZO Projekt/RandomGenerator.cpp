@@ -1,7 +1,7 @@
 #include <iostream>
 #include <random>
 #include <fstream>
-#include "ReadFile.h"
+#include "RWFile.h"
 #include "RandomGenerator.h"
 using namespace std;
 

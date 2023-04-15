@@ -2,10 +2,10 @@
 #include "DynamicArray.h"
 #include "bidirectionalList.h"
 #include "Heap.h"
-#include "ReadFile.h"
+#include "RWFile.h"
 
 void ManualTests::choose(int option) {
-	ReadFile rF;
+	RWFile rF;
 	char optionF = rF.menu();
 
 	if (optionF == 'A') {

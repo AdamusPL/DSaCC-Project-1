@@ -1,23 +1,49 @@
 #include "AutoTests.h"
 #include "RandomGenerator.h"
-#include "ReadFile.h"
+#include "RWFile.h"
 #include "DynamicArray.h"
 #include "bidirectionalList.h"
 #include "Heap.h"
+#include "Time.h"
 
 void AutoTests::testDynamicArray() {
 	RandomGenerator rng;
-	ReadFile rF;
+	RWFile rF;
+	Time timer;
+	int* results = new int[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
 
-	for (int i = 0; i < 10; i++) {
-		rng.generatePopulation();
+	//addOnStart
+	for (int i = 0; i < 10; i++) { //10 testow
+		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
 		int size = 0;
-		int* tab=rF.readFromFile(size);
+		int* tab=rF.readFromFile(size); //wczytanie zawartosci tego txt
 		DynamicArray arr = DynamicArray(tab,size);
-		int val = rng.generateRandomNumber();
+		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+		timer.startTimer(); //wystartowanie timera
 		arr.addOnStart(val);
-		arr.display();
+		int time = timer.stopTimer(); //zatrzymanie timera
+		results[i] = time;
+		arr.display(); //wyswietlenie zawartosci tablicy
 	}
+
+	rF.writeResultsToFile("testArray.txt", results);
+
+	//removeFromStart
+	for (int i = 0; i < 10; i++) { //10 testow
+		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+		int size = 0;
+		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		DynamicArray arr = DynamicArray(tab, size);
+		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+		timer.startTimer(); //wystartowanie timera
+		arr.removeFromStart();
+		int time = timer.stopTimer(); //zatrzymanie timera
+		results[i] = time;
+		arr.display(); //wyswietlenie zawartosci tablicy
+	}
+
+	rF.writeResultsToFile("testArray.txt", results);
+
 }
 
 void AutoTests::testBidirectionalList() {

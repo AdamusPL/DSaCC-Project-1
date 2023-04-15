@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Heap.h"
-#include "Time.h"
 using namespace std;
 
 Heap::Heap() { //konstruktor dla kopca do testów manualnych
@@ -16,8 +15,6 @@ Heap::Heap(int *d, int s) { //konstruktor dla kopca, gdy wybierzemy testy automa
 }
 
 void Heap::add(int val) {
-	Time timer;
-	timer.startTimer();
 	int* tempData = new int[size+1]; //tymczasowa tablica z danymi
 
 	if (size == 0) {
@@ -48,12 +45,9 @@ void Heap::add(int val) {
 	delete[] data;
 	data = tempData;
 	size++;
-	timer.stopTimer();
 }
 
 void Heap::removeFromPeak() {
-	Time timer;
-	timer.startTimer();
 	if (size == 0) { //jeœli rozmiar tablicy = 0
 		cout << "Kopiec jest pusty!" << endl;
 		return;
@@ -117,7 +111,6 @@ void Heap::removeFromPeak() {
 	size--;
 	delete[] data;
 	data = tempData;
-	timer.stopTimer();
 }
 
 void Heap::display() {
@@ -133,20 +126,15 @@ void Heap::display() {
 }
 
 void Heap::find(int val) {
-	Time timer;
-	timer.startTimer();
 
 	for (int i = 0; i < size; i++) {
 		if (val == data[i]) {
 			cout << val << " znajduje sie na indeksie: " << i << endl;
-			timer.stopTimer();
 			return;
 		}
 	}
 
 	cout << "Nie ma takiej wartosci w tablicy!" << endl;
-
-	timer.stopTimer();
 }
 
 void Heap::menu() { //metoda menu

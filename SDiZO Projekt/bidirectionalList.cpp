@@ -1,6 +1,5 @@
 #include <iostream>
 #include "bidirectionalList.h"
-#include "Time.h"
 using namespace std;
 
 struct ElemList {
@@ -23,8 +22,6 @@ void bidirectionalList::readData(int *tab, int s) { //dodanie elementów do listy
 }
 
 void bidirectionalList::addOnStart(int data) {
-	Time timer;
-	timer.startTimer();
 	ElemList* p = new ElemList; //nowy "wêze³"
 	p->data = data; //dodane dane
 	p->prev = NULL; //wsk. na poprzedni element NULL
@@ -40,12 +37,9 @@ void bidirectionalList::addOnStart(int data) {
 
 	head = p; //nowy wêze³ staje siê g³ow¹
 	size++;
-	timer.stopTimer();
 }
 
 void bidirectionalList::removeFromStart() {
-	Time timer;
-	timer.startTimer();
 	if (head == nullptr) {
 		cout << "Lista jest pusta!" << endl;
 	}
@@ -62,12 +56,9 @@ void bidirectionalList::removeFromStart() {
 		head->prev = NULL; //ustawienie wskaŸnika prev na NULL
 		size--;
 	}
-	timer.stopTimer();
 }
 
 void bidirectionalList::addOnEnd(int data) {
-	Time timer;
-	timer.startTimer();
 	ElemList* p = new ElemList; //nowy "wêze³"
 	p->data = data; //dodane dane
 	p->next = NULL; //wsk. na kolejny element NULL
@@ -90,12 +81,9 @@ void bidirectionalList::addOnEnd(int data) {
 		p->prev = iterator; //ustawienie w nowym wêŸle wskaŸnika na poprzedni wêze³
 	}
 	size++;
-	timer.stopTimer();
 }
 
 void bidirectionalList::removeFromEnd() {
-	Time timer;
-	timer.startTimer();
 	if (head == nullptr) {
 		cout << "Lista jest pusta!" << endl;
 	}
@@ -117,16 +105,12 @@ void bidirectionalList::removeFromEnd() {
 		iterator->next = NULL; //ustawienie wskaŸnika next na NULL
 		size--;
 	}
-	timer.stopTimer();
 }
 
 void bidirectionalList::insert(int index, int data) {
-	Time timer;
-	timer.startTimer();
 
 	if (index > size || index < 0) {
 		cout << "Niepoprawny indeks!" << endl;
-		timer.stopTimer();
 		return;
 	}
 
@@ -166,13 +150,10 @@ void bidirectionalList::insert(int index, int data) {
 		}
 	}
 	size++;
-	timer.stopTimer();
 }
 
 
 void bidirectionalList::removeFromChosen(int index) {
-	Time timer;
-	timer.startTimer();
 
 	if (head == nullptr) { //jeœli g³owa jest pusta
 		cout << "Lista jest pusta!" << endl;
@@ -207,7 +188,6 @@ void bidirectionalList::removeFromChosen(int index) {
 		size++;
 	}
 
-	timer.stopTimer();
 }
 
 
@@ -246,22 +226,18 @@ void bidirectionalList::displayFromEnd() {
 }
 
 void bidirectionalList::find(int val) {
-	Time timer;
-	timer.startTimer();
 	int position = 0;
 	ElemList* iterator = new ElemList;
 	iterator = head;
 	while (iterator != NULL) {
 		if (val == iterator->data) {
 			cout << val << " znajduje sie na pozycji: " << position << " od lewej strony" << endl;
-			timer.stopTimer();
 			return;
 		}
 		position++;
 		iterator = iterator->next;
 	}
 	cout << "Taka wartosc nie wystepuje w liscie!" << endl;
-	timer.stopTimer();
 }
 
 void bidirectionalList::menu() { //metoda menu

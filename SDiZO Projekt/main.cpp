@@ -3,7 +3,7 @@
 #include "bidirectionalList.h"
 #include "Heap.h"
 #include "ManualTests.h"
-#include "ReadFile.h"
+#include "RWFile.h"
 #include "AutoTests.h"
 using namespace std;
 

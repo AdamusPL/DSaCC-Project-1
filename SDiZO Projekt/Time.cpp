@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <windows.h>
 #include "Time.h"
@@ -20,7 +21,8 @@ void Time::startTimer() { //wystartowanie timera
 	start = read_QPC();
 }
 
-void Time::stopTimer() { //zastopowanie timera i wypisanie up³yniêtego czasu
+int Time::stopTimer() { //zastopowanie timera i wypisanie up³yniêtego czasu
+
 	elapsed = read_QPC() - start;
 	cout << "Time [s] = " << fixed << setprecision(3) << (float)elapsed /
 		frequency << endl;
@@ -28,4 +30,7 @@ void Time::stopTimer() { //zastopowanie timera i wypisanie up³yniêtego czasu
 		frequency << endl;
 	cout << "Time [us] = " << setprecision(0) << (1000000.0 * elapsed) /
 		frequency << endl << endl;
+	
+	int time = (1000000.0 * elapsed) / frequency;
+	return time;
 }
