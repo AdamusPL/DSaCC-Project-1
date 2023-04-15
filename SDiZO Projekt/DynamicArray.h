@@ -3,7 +3,7 @@
 using namespace std;
 
 class DynamicArray {
-protected:
+public:
 	int* array;
 	int size;
 
@@ -17,6 +17,7 @@ public:
 	void insert(int, int);
 	void removeFromChosen(int);
 	void display();
+	void displayTests();
 	void find(int);
 	void menu();
 	int loadNumber();

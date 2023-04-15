@@ -156,6 +156,21 @@ void DynamicArray::display() {
 	cout << endl;
 }
 
+void DynamicArray::displayTests() {
+	if (size == 0) {
+		cout << "Tablica jest pusta!" << endl;
+	}
+
+	else {
+		for (size_t i = 0; i < size; i++)
+		{
+			cout << array[i] <<" ";
+			//cout<<*(array+i)<<endl;
+		}
+	}
+	cout << endl;
+}
+
 void DynamicArray::find(int val) {
 
 	for (int i = 0; i < size; i++) {

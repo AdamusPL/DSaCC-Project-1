@@ -5,7 +5,7 @@
 #include "RandomGenerator.h"
 using namespace std;
 
-#define TESTS 1000
+#define TESTS 10000000
 
 RandomGenerator::RandomGenerator() {}
 
