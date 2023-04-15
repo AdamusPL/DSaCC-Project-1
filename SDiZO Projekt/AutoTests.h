@@ -1,6 +1,10 @@
 #pragma once
-class AutoTests {
+#include "AutoTests.h"
 
+class AutoTests {
 public:
-	int* readFromFile(int &);
+	void testDynamicArray();
+	void testBidirectionalList();
+	void testHeap();
+	void choice(int);
 };

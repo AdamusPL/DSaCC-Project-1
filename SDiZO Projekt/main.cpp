@@ -2,13 +2,14 @@
 #include "DynamicArray.h"
 #include "bidirectionalList.h"
 #include "Heap.h"
-#include "Tests.h"
+#include "ManualTests.h"
+#include "ReadFile.h"
 #include "AutoTests.h"
 using namespace std;
 
 int main() {
 	int option = 1;
-	while (option != 6) {
+	while (option != 6) { //menu, wybor struktury
 		cout << "Wybierz strukture:" << endl;
 		cout << "1. Tablica dynamiczna" << endl;
 		cout << "2. Lista dwukierunkowa" << endl;
@@ -19,43 +20,24 @@ int main() {
 		cin >> option; //wybór opcji
 		if (option == 6) exit(0);
 
-		Tests t;
-		char optionT = t.menu();
-
-		if (optionT == 'A') {
+		int optionT = 0;
+		while (optionT != 3) {
+			cout << "Wybierz rodzaj testow: " << endl;
+			cout << "1. Manualne" << endl;
+			cout << "2. Automatyczne" << endl;
+			cout << "3. Powrot" << endl;
+			cin >> optionT;
+			ManualTests mT;
 			AutoTests aT;
-			int size=0;
-			int* tab = aT.readFromFile(size);
-			DynamicArray arr=DynamicArray(tab,size);
-			bidirectionalList biL;
-			Heap h=Heap(tab,size);
 
-			switch (option) {
+			switch (optionT) {
 			case 1:
-				arr.menu(); break;
+				mT.choose(option); break;
 			case 2:
-				biL.readData(tab,size); //wczytanie danych testowych do listy dwukierunkowej
-				biL.menu(); break;
+				aT.choice(option); break;
+				break;
 			case 3:
-				h.menu(); break;
-				/*case 4: BSTTree(); break;
-				case 5: redBlackTree(); break;*/
-			}
-		}
-
-		else if(optionT=='M'){
-			DynamicArray arr;
-			bidirectionalList biL;
-			Heap h;
-			switch (option) {
-			case 1:
-				arr.menu(); break;
-			case 2:
-				biL.menu(); break;
-			case 3:
-				h.menu(); break;
-				/*case 4: BSTTree(); break;
-				case 5: redBlackTree(); break;*/
+				break;
 			}
 		}
 

@@ -1,34 +1,45 @@
-#include "AutoTests.h";
-#include <iostream>
-#include <fstream>
-using namespace std;
+#include "AutoTests.h"
+#include "RandomGenerator.h"
+#include "ReadFile.h"
+#include "DynamicArray.h"
+#include "bidirectionalList.h"
+#include "Heap.h"
 
-int* AutoTests::readFromFile(int &size) {
-	fstream file;
-	string filename;
-	
-	cout << "Podaj nazwe pliku" << endl;
-	cin >> filename;
+void AutoTests::testDynamicArray() {
+	RandomGenerator rng;
+	ReadFile rF;
 
-	file.open(filename, ios::in);
-
-	if (file.is_open()) {
-		file >> size;
-		int* tab=new int[size];
-
-		for (int i = 0; i < size; i++) {
-			int val;
-			file >> val;
-			if (file.fail()) {
-				cout << "Blad pliku - wczytywania" << endl;
-				break;
-			}
-			else tab[i] = val;
-		}
-
-		file.close();
-
-		return tab;
+	for (int i = 0; i < 10; i++) {
+		rng.generatePopulation();
+		int size = 0;
+		int* tab=rF.readFromFile(size);
+		DynamicArray arr = DynamicArray(tab,size);
+		int val = rng.generateRandomNumber();
+		arr.addOnStart(val);
+		arr.display();
 	}
-	else cout << "Blad pliku - otwarcia" << endl;
+}
+
+void AutoTests::testBidirectionalList() {
+	for (int i = 0; i < 10; i++) {
+
+	}
+}
+
+void AutoTests::testHeap() {
+	for (int i = 0; i < 10; i++) {
+
+	}
+}
+
+void AutoTests::choice(int option) {
+	switch (option) {
+	case 1:
+		testDynamicArray(); break;
+	
+	case 2:
+		testBidirectionalList(); break;
+	case 3:
+		testHeap(); break;
+	}
 }

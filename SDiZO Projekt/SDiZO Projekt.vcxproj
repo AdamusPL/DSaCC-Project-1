@@ -128,19 +128,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AutoTests.cpp" />
+    <ClCompile Include="ManualTests.cpp" />
+    <ClCompile Include="RandomGenerator.cpp" />
+    <ClCompile Include="ReadFile.cpp" />
     <ClCompile Include="bidirectionalList.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoTests.h" />
+    <ClInclude Include="ManualTests.h" />
+    <ClInclude Include="RandomGenerator.h" />
+    <ClInclude Include="ReadFile.h" />
     <ClInclude Include="bidirectionalList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Heap.h" />
-    <ClInclude Include="Tests.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
