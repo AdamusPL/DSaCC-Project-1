@@ -14,6 +14,7 @@ public:
 	void displayFromStart();
 	void displayFromEnd();
 	void find(int);
+	int middle();
 	void menu();
 	int loadNumber();
 	int loadIndex();

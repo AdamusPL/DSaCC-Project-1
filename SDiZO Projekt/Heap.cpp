@@ -68,11 +68,6 @@ void Heap::removeFromPeak() {
 				if (tempData[k] < tempData[2 * k + 2]) { //jeœli rodzic mniejszy od syna
 					swap(tempData[k], tempData[2 * k + 2]);
 					k = 2 * k + 2;
-					for (size_t i = 0; i < size-1; i++)
-					{
-						cout << "t[" << i << "]=" << data[i] << endl;
-					}
-					cout << endl;
 				}
 				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
 			}
@@ -81,11 +76,6 @@ void Heap::removeFromPeak() {
 				if (tempData[k] < tempData[2 * k + 1]) { //jeœli rodzic mniejszy od syna
 					swap(tempData[k], tempData[2 * k + 1]);
 					k = 2 * k + 1;
-					for (size_t i = 0; i < size-1; i++)
-					{
-						cout << "t[" << i << "]=" << data[i] << endl;
-					}
-					cout << endl;
 				}
 				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
 			}
@@ -134,7 +124,7 @@ void Heap::find(int val) {
 		}
 	}
 
-	cout << "Nie ma takiej wartosci w tablicy!" << endl;
+	cout << "Nie ma takiej wartosci w kopcu!" << endl;
 }
 
 void Heap::menu() { //metoda menu

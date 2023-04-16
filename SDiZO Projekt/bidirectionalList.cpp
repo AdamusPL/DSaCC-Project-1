@@ -240,6 +240,19 @@ void bidirectionalList::find(int val) {
 	cout << "Taka wartosc nie wystepuje w liscie!" << endl;
 }
 
+int bidirectionalList::middle() {
+	ElemList* iterator = new ElemList;
+	iterator = head;
+	int i = 0;
+
+	while (i != size / 2) {
+		iterator = iterator->next;
+		i++;
+	}
+
+	return iterator->data;
+}
+
 void bidirectionalList::menu() { //metoda menu
 	int option = 1;
 	while (option != 10) {
