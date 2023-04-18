@@ -22,7 +22,6 @@ void Time::startTimer() { //wystartowanie timera
 }
 
 int Time::stopTimer() { //zastopowanie timera i wypisanie up³yniêtego czasu
-
 	elapsed = read_QPC() - start;
 	cout << "Time [s] = " << fixed << setprecision(3) << (float)elapsed /
 		frequency << endl;

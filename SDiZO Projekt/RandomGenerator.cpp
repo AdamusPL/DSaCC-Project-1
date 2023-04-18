@@ -5,7 +5,7 @@
 #include "RandomGenerator.h"
 using namespace std;
 
-#define TESTS 10000000
+#define TESTS 10000
 
 RandomGenerator::RandomGenerator() {}
 
@@ -16,7 +16,7 @@ void RandomGenerator::generatePopulation()
 	int val, min, max;
 	random_device rd; // non-deterministic generator
 	mt19937 gen(rd()); // random engine seeded with rd()
-	uniform_int_distribution<> dist(1, 1000000); // distribute results between
+	uniform_int_distribution<> dist(1, 1000000000); // distribute results between
 
 	string filename = "";
 	filename = "test";

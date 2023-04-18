@@ -1,6 +1,9 @@
-﻿  RandomGenerator.cpp
+﻿  DynamicArray.cpp
+  RandomGenerator.cpp
+  Time.cpp
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Time.cpp(33,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Generating code
-  1 of 239 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  2 of 239 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
