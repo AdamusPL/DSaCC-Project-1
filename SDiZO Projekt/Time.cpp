@@ -21,15 +21,15 @@ void Time::startTimer() { //wystartowanie timera
 	start = read_QPC();
 }
 
-int Time::stopTimer() { //zastopowanie timera i wypisanie up³yniêtego czasu
+double Time::stopTimer() { //zastopowanie timera i wypisanie up³yniêtego czasu
 	elapsed = read_QPC() - start;
-	cout << "Time [s] = " << fixed << setprecision(3) << (float)elapsed /
+	cout << "Time [s] = " << fixed << setprecision(0) << (float)elapsed /
 		frequency << endl;
 	cout << "Time [ms] = " << setprecision(0) << (1000.0 * elapsed) /
 		frequency << endl;
-	cout << "Time [us] = " << setprecision(0) << (1000000.0 * elapsed) /
+	cout << "Time [us] = " << setprecision(1) << (1000000.0 * elapsed) /
 		frequency << endl << endl;
 	
-	int time = (1000000.0 * elapsed) / frequency;
+	double time = (1000000.0 * elapsed) / frequency;
 	return time;
 }

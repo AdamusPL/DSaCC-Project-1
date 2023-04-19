@@ -6,6 +6,6 @@ class RWFile {
 
 public:
 	int* readFromFile(int &);
-	void writeResultsToFile(string,int*);
+	void writeResultsToFile(string,double*);
 	char menu();
 };

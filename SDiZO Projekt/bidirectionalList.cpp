@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "bidirectionalList.h"
 using namespace std;
 
@@ -17,7 +18,7 @@ ElemList* head = nullptr; //head na poczatku nullptr
 void bidirectionalList::readData(int *tab, int s) { //dodanie elementów do listy z pliku tekstowego, gdy testujemy automatycznie
 	size = s;
 	for (int i = 0; i < s; i++) {
-		addOnEnd(tab[i]);
+		addOnStart(tab[i]);
 	}
 }
 

@@ -30,10 +30,10 @@ int* RWFile::readFromFile(int &size) { //funkcja wczytujaca dane z pliku i zwrac
 	else cout << "Blad pliku - otwarcia" << endl;
 }
 
-void RWFile::writeResultsToFile(string filename, int* results) { //wypisanie rezultatow eksperymentow do pliku txt
+void RWFile::writeResultsToFile(string filename, double* results) { //wypisanie rezultatow eksperymentow do pliku txt
 	fstream file;
 	file.open(filename, ios::out);
-	int avg = 0;
+	double avg = 0;
 
 	for (int i = 0; i < 10; i++) {
 		file << results[i] << endl;

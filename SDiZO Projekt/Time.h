@@ -4,5 +4,5 @@ public:
 	long long int frequency, start, elapsed;
 	Time();
 	void startTimer();
-	int stopTimer();
+	double stopTimer();
 };
