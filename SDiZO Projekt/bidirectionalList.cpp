@@ -11,9 +11,9 @@ struct ElemList {
 
 bidirectionalList::bidirectionalList() {
 	size = 0;
+	head = nullptr;
+	tail = nullptr;
 }
-
-ElemList* head = nullptr; //head na poczatku nullptr
 
 void bidirectionalList::readData(int *tab, int s) { //dodanie elementów do listy z pliku tekstowego, gdy testujemy automatycznie
 	size = s;
@@ -29,14 +29,16 @@ void bidirectionalList::addOnStart(int data) {
 
 	if (head == nullptr) { //jeœli lista jest pusta, tzn. g³owa to nullpointer
 		p->next = NULL; //wsk. na kolejny te¿ NULL
+		head = p; //nowy wêze³ staje siê g³ow¹
+		tail = head;
 	}
 
 	else { //jeœli lista nie jest pusta
 		p->next = head; //wsk. na kolejny element to wskaŸnik na by³¹ g³owê
 		head->prev = p; //ustawienie wskaŸnika na wczeœniejszy element poprzedniej g³owy na nowo dodany wêze³
+		head = p; //nowy wêze³ staje siê g³ow¹
 	}
-
-	head = p; //nowy wêze³ staje siê g³ow¹
+	
 	size++;
 }
 
@@ -67,19 +69,13 @@ void bidirectionalList::addOnEnd(int data) {
 	if (head == nullptr) { //jeœli lista jest pusta, tzn. g³owa to nullpointer
 		p->prev = NULL; //wsk. na poprzedni te¿ NULL
 		head = p; //nowy wêze³ staje siê g³ow¹
+		tail = head;
 	}
 
 	else { //jeœli lista nie jest pusta
-		ElemList* iterator = new ElemList;
-		iterator = head;
-
-		while (iterator->next != NULL) { //dopóki kolejny wêze³ nie jest nullem
-			iterator = iterator->next; //iterujemy do ostatniego elementu w liœcie
-		}
-
-		iterator->next = p; //ustawienie kolejnego elementu listy by³ego poprzedniego ostatniego elementu jako p
-
-		p->prev = iterator; //ustawienie w nowym wêŸle wskaŸnika na poprzedni wêze³
+		p->prev = tail;
+		tail->next = p;
+		tail = p;
 	}
 	size++;
 }
@@ -96,14 +92,10 @@ void bidirectionalList::removeFromEnd() {
 	}
 
 	else {
-		ElemList* iterator = head;
-		while (iterator->next != NULL) { //dopóki kolejny wêze³ nie jest nullem
-			iterator = iterator->next; //iterujemy do ostatniego elementu w liœcie
-		}
-		
-		iterator=iterator->prev;
-		free(iterator->next); //zwolnienie pamiêci z ostatniego elementu listy
-		iterator->next = NULL; //ustawienie wskaŸnika next na NULL
+		ElemList* previous = tail->prev;
+		free(tail);
+		previous->next = NULL;
+		tail = previous;
 		size--;
 	}
 }
@@ -212,15 +204,13 @@ void bidirectionalList::displayFromEnd() {
 	if (head == nullptr) {
 		cout << "Lista jest pusta!" << endl;
 	}
+
 	else {
-		ElemList* iterator = head;
-		while (iterator->next != NULL) {
-			iterator = iterator->next; //przeiterowanie do koñca listy
-		}
+		ElemList* iterator = tail;
 
 		while (iterator != NULL) {
 			cout << iterator->data << " ";
-			iterator = iterator->prev; //cofniecie do poprzedniego wêz³a
+			iterator = iterator->prev;
 		}
 
 		cout << endl;

@@ -15,10 +15,9 @@ int main() {
 		cout << "2. Lista dwukierunkowa" << endl;
 		cout << "3. Kopiec binarny" << endl;
 		cout << "4. Drzewo przeszukiwan binarnych BST" << endl;
-		cout << "5. Drzewo czerwono-czarne" << endl;
-		cout << "6. Wyjscie" << endl;
+		cout << "5. Wyjscie" << endl;
 		cin >> option; //wybór opcji
-		if (option == 6) exit(0);
+		if (option == 5) exit(0);
 
 		int optionT = 0;
 		while (optionT != 3) {

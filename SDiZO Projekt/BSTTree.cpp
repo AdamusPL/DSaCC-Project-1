@@ -180,9 +180,10 @@ void BSTTree::menu() {
 		cout << "Co chcesz zrobic:" << endl;
 		cout << "1. Dodac element do BST" << endl;
 		cout << "2. Usunac element z BST" << endl;
-		cout << "3. Wyswietl elementy BST" << endl;
-		cout << "4. Znajdz element w BST" << endl;
-		cout << "5. Inna struktura danych" << endl;
+		cout << "3. Wyswietl elementy BST (preorder)" << endl;
+		cout << "4. Wyswietl elementy BST jako drzewo" << endl;
+		cout << "5. Znajdz element w BST" << endl;
+		cout << "6. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -197,13 +198,14 @@ void BSTTree::menu() {
 			 break;
 		case 3:
 			preorder(root);
-			printAsTree();
 			 break;
 		case 4:
+			printAsTree();
+		case 5:
 			number = loadNumber();
 			search(root, number);
 			 break;
-		case 5:
+		case 6:
 			return;
 		}
 	}

@@ -2,6 +2,15 @@
 
 class bidirectionalList {
 public:
+	struct ElemList {
+		ElemList* prev;
+		int data;
+		ElemList* next;
+	};
+
+	ElemList* head;
+	ElemList* tail;
+
 	int size;
 	bidirectionalList();
 	void readData(int*,int);

@@ -138,20 +138,20 @@ void AutoTests::testBidirectionalList() { //pozmieniac na biL
 	Time timer;
 	double* results = new double[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
 
-	//addOnStart
-	for (int i = 0; i < 1; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
-		int size = 0;
-		int* tab=rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab,size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
-		biL.addOnStart(val);
-		double time = timer.stopTimer(); //zatrzymanie timera
-		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
-	}
+	////addOnStart
+	//for (int i = 0; i < 1; i++) { //10 testow
+	//	rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//	int size = 0;
+	//	int* tab=rF.readFromFile(size); //wczytanie zawartosci tego txt
+	//	bidirectionalList biL;
+	//	biL.readData(tab,size);
+	//	int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+	//	timer.startTimer(); //wystartowanie timera
+	//	biL.addOnStart(val);
+	//	double time = timer.stopTimer(); //zatrzymanie timera
+	//	results[i] = time;
+	//	//arr.displayTests(); //wyswietlenie zawartosci tablicy
+	//}
 
 	//rF.writeResultsToFile("testBiLAOS.txt", results);
 
@@ -171,40 +171,7 @@ void AutoTests::testBidirectionalList() { //pozmieniac na biL
 
 	//rF.writeResultsToFile("testBiLRFS.txt", results);
 
-	////addOnEnd
-	//for (int i = 0; i < 10; i++) { //10 testow
-	//	rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
-	//	int size = 0;
-	//	int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-	//	bidirectionalList biL;
-	//	biL.readData(tab, size);
-	//	int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-	//	timer.startTimer(); //wystartowanie timera
-	//	biL.addOnEnd(val);
-	//	double time = timer.stopTimer(); //zatrzymanie timera
-	//	results[i] = time;
-	//	//arr.displayTests(); //wyswietlenie zawartosci tablicy
-	//}
-
-	//rF.writeResultsToFile("testBiLAOE.txt", results);
-
-	////removeFromEnd
-	//for (int i = 0; i < 10; i++) { //10 testow
-	//	rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
-	//	int size = 0;
-	//	int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-	//	bidirectionalList biL;
-	//	biL.readData(tab, size);
-	//	timer.startTimer(); //wystartowanie timera
-	//	biL.removeFromEnd();
-	//	double time = timer.stopTimer(); //zatrzymanie timera
-	//	results[i] = time;
-	//	//arr.displayTests(); //wyswietlenie zawartosci tablicy
-	//}
-
-	//rF.writeResultsToFile("testBiLRFE.txt", results);
-
-	//insert
+	//addOnEnd
 	for (int i = 0; i < 10; i++) { //10 testow
 		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
 		int size = 0;
@@ -213,13 +180,46 @@ void AutoTests::testBidirectionalList() { //pozmieniac na biL
 		biL.readData(tab, size);
 		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
 		timer.startTimer(); //wystartowanie timera
-		biL.insert(biL.size/2,val);
+		biL.addOnEnd(val);
 		double time = timer.stopTimer(); //zatrzymanie timera
 		results[i] = time;
 		//arr.displayTests(); //wyswietlenie zawartosci tablicy
 	}
 
-	rF.writeResultsToFile("testBiLI.txt", results);
+	rF.writeResultsToFile("testBiLAOE.txt", results);
+
+	//removeFromEnd
+	for (int i = 0; i < 10; i++) { //10 testow
+		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+		int size = 0;
+		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		bidirectionalList biL;
+		biL.readData(tab, size);
+		timer.startTimer(); //wystartowanie timera
+		biL.removeFromEnd();
+		double time = timer.stopTimer(); //zatrzymanie timera
+		results[i] = time;
+		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+	}
+
+	rF.writeResultsToFile("testBiLRFE.txt", results);
+
+	//insert
+	//for (int i = 0; i < 10; i++) { //10 testow
+	//	rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//	int size = 0;
+	//	int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+	//	bidirectionalList biL;
+	//	biL.readData(tab, size);
+	//	int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+	//	timer.startTimer(); //wystartowanie timera
+	//	biL.insert(biL.size/2,val);
+	//	double time = timer.stopTimer(); //zatrzymanie timera
+	//	results[i] = time;
+	//	//arr.displayTests(); //wyswietlenie zawartosci tablicy
+	//}
+
+	//rF.writeResultsToFile("testBiLI.txt", results);
 
 	////removeFromChosen
 	//for (int i = 0; i < 10; i++) { //10 testow
