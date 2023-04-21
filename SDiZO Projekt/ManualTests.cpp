@@ -2,6 +2,7 @@
 #include "DynamicArray.h"
 #include "bidirectionalList.h"
 #include "Heap.h"
+#include "BSTTree.h"
 #include "RWFile.h"
 
 void ManualTests::choose(int option) {
@@ -14,6 +15,7 @@ void ManualTests::choose(int option) {
 		DynamicArray arr = DynamicArray(tab, size);
 		bidirectionalList biL;
 		Heap h = Heap(tab, size);
+		BSTTree bst;
 
 		switch (option) {
 		case 1:
@@ -23,6 +25,9 @@ void ManualTests::choose(int option) {
 			biL.menu(); break;
 		case 3:
 			h.menu(); break;
+		case 4:
+			bst.readData(tab, size);
+			bst.menu();
 			/*case 4: BSTTree(); break;
 			case 5: redBlackTree(); break;*/
 		}
@@ -32,6 +37,7 @@ void ManualTests::choose(int option) {
 		DynamicArray arr;
 		bidirectionalList biL;
 		Heap h;
+		BSTTree bst;
 		switch (option) {
 		case 1:
 			arr.menu(); break;
@@ -39,8 +45,9 @@ void ManualTests::choose(int option) {
 			biL.menu(); break;
 		case 3:
 			h.menu(); break;
-			/*case 4: BSTTree(); break;
-			case 5: redBlackTree(); break;*/
+		case 4: 
+			bst.menu(); break;
+			//case 5: redBlackTree(); break;*/
 		}
 	}
 }

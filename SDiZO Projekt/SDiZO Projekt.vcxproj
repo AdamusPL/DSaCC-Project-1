@@ -130,6 +130,7 @@
     <ClCompile Include="AutoTests.cpp" />
     <ClCompile Include="BSTTree.cpp" />
     <ClCompile Include="ManualTests.cpp" />
+    <ClCompile Include="PrintBST.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="RWFile.cpp" />
     <ClCompile Include="bidirectionalList.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="AutoTests.h" />
     <ClInclude Include="BSTTree.h" />
     <ClInclude Include="ManualTests.h" />
+    <ClInclude Include="PrintBST.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="RWFile.h" />
     <ClInclude Include="bidirectionalList.h" />

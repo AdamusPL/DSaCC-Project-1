@@ -11,6 +11,7 @@ public:
 	void add(int);
 	void menu();
 	void display();
+	void displayTree();
 	void find(int);
 	int loadNumber();
 };

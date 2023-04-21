@@ -122,15 +122,16 @@ void bidirectionalList::insert(int index, int data) {
 		p->prev = NULL; //wsk. na poprzedni NULL
 		p->next = NULL; //wsk. na kolejny te¿ NULL
 		head = p; //nowy wêze³ staje siê g³ow¹
+		size++;
 	}
 
 	else {
 		if (index == 0) {
-			addOnStart(data);
+			bidirectionalList::addOnStart(data);
 		}
 
 		else if (index == size) {
-			addOnEnd(data);
+			bidirectionalList::addOnEnd(data);
 		}
 
 		else {	
@@ -148,9 +149,9 @@ void bidirectionalList::insert(int index, int data) {
 
 			iterator->next = p; //ustawienie wsk. na kolejny element w wêŸle "na lewo"
 			temp->prev = p; //ustawienie wsk. na poprzedni element w wêŸle "na prawo"
+			size++;
 		}
 	}
-	size++;
 }
 
 
@@ -186,7 +187,7 @@ void bidirectionalList::removeFromChosen(int index) {
 			free(iterator->next);
 			iterator->next = temp;
 		}
-		size++;
+		size--;
 	}
 
 }

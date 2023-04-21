@@ -45,6 +45,9 @@
     <ClCompile Include="BSTTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PrintBST.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bidirectionalList.h">
@@ -72,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="BSTTree.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintBST.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

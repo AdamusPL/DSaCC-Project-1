@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "Heap.h"
 using namespace std;
 
@@ -115,6 +116,58 @@ void Heap::display() {
 	}
 }
 
+
+void Heap::displayTree() {
+	if (size == 0) {
+		cout << "Kopiec jest pusty!" << endl;
+		return;
+	}
+
+	int offset = 50;
+	int offsetSmall = 5;
+	int row = 1;
+	int leftSon = 0;
+	int rightSon = 0;
+	bool stop = false;
+
+	for (int j = 0; j < size; j++) {
+		if (rightSon >= size) {
+			rightSon = size - 1;
+			stop = true;
+		}
+
+		for (int k = 0; k < offset; k++) {
+			cout << " ";
+		}
+
+		int loops = 1;
+		for (int k = leftSon; k <= rightSon; k++) {
+			cout << data[k];
+			if (loops % 2 == 0) {
+				for (int i = 0; i < offsetSmall; i++) {
+					cout << " ";
+				}
+			}
+			else {
+				for (int i = 0; i < 20; i++) {
+					cout << " ";
+				}
+			}
+			loops++;
+		}
+
+		leftSon = 2 * leftSon + 1;
+		row *= 2;
+		rightSon += row;
+		offset-=10;
+		offsetSmall--;
+		cout << endl << endl;
+		if (stop) break;
+	}
+	
+
+}
+
 void Heap::find(int val) {
 
 	for (int i = 0; i < size; i++) {
@@ -134,8 +187,9 @@ void Heap::menu() { //metoda menu
 		cout << "1. Dodac element do kopca" << endl;
 		cout << "2. Usunac szczyt kopca" << endl;
 		cout << "3. Wyswietl elementy kopca" << endl;
-		cout << "4. Znajdz element w kopcu" << endl;
-		cout << "5. Inna struktura danych" << endl;
+		cout << "4. Wyswietl kopiec jako drzewo" << endl;
+		cout << "5. Znajdz element w kopcu" << endl;
+		cout << "6. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -149,9 +203,11 @@ void Heap::menu() { //metoda menu
 		case 3:
 			display(); break;
 		case 4:
+			displayTree(); break;
+		case 5:
 			number = loadNumber();
 			find(number); break;
-		case 5:
+		case 6:
 			return;
 		}
 	}
