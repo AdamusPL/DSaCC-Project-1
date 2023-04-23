@@ -1,4 +1,5 @@
 #pragma once
+
 class BSTTree {
 public:
 	BSTTree();
@@ -14,13 +15,11 @@ public:
 	Node* root;
 
 	void add(int);
-	void deleteNodeM(int);
 	void deleteNode(int);
+	void printAsTree();
 	Node* search(Node*, int);
 	Node* findSuccessor(Node*);
 	Node* minKey(Node*);
-	void printAsTree();
-	void displayloop(Node*);
 	void preorder(Node*);
 	void menu();
 	int loadNumber();

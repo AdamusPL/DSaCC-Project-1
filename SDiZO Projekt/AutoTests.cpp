@@ -328,37 +328,75 @@ void AutoTests::testBST() {
 	Time timer;
 	double* results = new double[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
 
+	//for (int i = 0; i < 10; i++) { //10 testow
+	//	rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//	int size = 0;
+	//	int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+	//	int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+	//	BSTTree bst;
+	//	bst.readData(tab, size);
+	//	timer.startTimer(); //wystartowanie timera
+	//	bst.add(val);
+	//	double time = timer.stopTimer(); //zatrzymanie timera
+	//	results[i] = time;
+	//	//arr.displayTests(); //wyswietlenie zawartosci tablicy
+	//}
+
+	//rF.writeResultsToFile("testBSTA.txt", results);
+
+	//for (int i = 0; i < 10; i++) { //10 testow
+	//	rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//	int size = 0;
+	//	int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+	//	int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+	//	bool found = false;
+	//	while (!found) { //dopoki nie znajdzie wylosowanej wartosci w danych
+	//		val = rng.generateRandomNumber();
+	//		for (int i = 0; i < size; i++) {
+	//			if (tab[i] == val) {
+	//				found = true;
+	//				break;
+	//			}
+	//		}
+	//	}
+	//	BSTTree bst;
+	//	bst.readData(tab, size);
+	//	timer.startTimer(); //wystartowanie timera
+	//	bst.deleteNode(val);
+	//	double time = timer.stopTimer(); //zatrzymanie timera
+	//	results[i] = time;
+	//	//arr.displayTests(); //wyswietlenie zawartosci tablicy
+	//}
+
+	//rF.writeResultsToFile("testBSTDN.txt", results);
+
 	for (int i = 0; i < 10; i++) { //10 testow
 		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
 		int size = 0;
 		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
 		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+		bool found = false;
+		while (!found) { //dopoki nie znajdzie wylosowanej wartosci w danych
+			val = rng.generateRandomNumber();
+			for (int i = 0; i < size; i++) {
+				if (tab[i] == val) {
+					found = true;
+					break;
+				}
+			}
+		}
 		BSTTree bst;
 		bst.readData(tab, size);
+		BSTTree::Node* p;
 		timer.startTimer(); //wystartowanie timera
-		bst.add(val);
+		p=bst.search(bst.root, val);
 		double time = timer.stopTimer(); //zatrzymanie timera
+		if (p != nullptr) cout << "Znaleziono " << val << " w BST" << endl;
 		results[i] = time;
 		//arr.displayTests(); //wyswietlenie zawartosci tablicy
 	}
 
-	rF.writeResultsToFile("testBSTA.txt", results);
-
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
-		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		BSTTree bst;
-		bst.readData(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		bst.deleteNode(val);
-		double time = timer.stopTimer(); //zatrzymanie timera
-		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
-	}
-
-	rF.writeResultsToFile("testBSTDN.txt", results);
+	rF.writeResultsToFile("testBSTS.txt", results);
 }
 
 void AutoTests::choice(int option) {

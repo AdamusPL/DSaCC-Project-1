@@ -1,4 +1,5 @@
 #include "BSTTree.h"
+#include "PrintBST.h"
 #include <iostream>
 #include <conio.h>
 using namespace std;
@@ -28,7 +29,7 @@ void BSTTree::add(int val) {
 	}
 
 	Node* temp = root; //wezel do iteracji, zaczynamy od korzenia
-	Node* parentP=new Node; //wezel do zapamietania rodzica nowo wstawianego wezla
+	Node* parentP = new Node; //wezel do zapamietania rodzica nowo wstawianego wezla
 
 	while (temp != NULL) { //dopoki nie dojdziemy do liscia NULL
 		parentP = temp; //rodzicem nowego wezla moze byc aktualnie sprawdzany wezel
@@ -48,17 +49,16 @@ void BSTTree::add(int val) {
 	}
 
 	else parentP->right = p;
-
-
-}
-
-void BSTTree::deleteNodeM(int val) {
-
 }
 
 void BSTTree::deleteNode(int val) { //usuniecie elementu z drzewa BST
 	Node* deleteNode = new Node;
 	deleteNode = search(root, val);
+	
+	if (deleteNode == nullptr) { //jesli nie istnieje taki wezel w drzewie
+		cout << "Taki wezel nie istnieje w drzewie!" << endl;
+		return;
+	}
 
 	Node* x;
 	Node* y;
@@ -71,15 +71,15 @@ void BSTTree::deleteNode(int val) { //usuniecie elementu z drzewa BST
 		y = findSuccessor(deleteNode);
 	}
 
-	if (y->left != nullptr) {
+	if (y->left != nullptr) { //przypadek 2., gdy wezel ma tylko lewego syna
 		x = y->left;
 	}
 
-	else {
+	else { //c.d. p2. gdy ma tylko prawego syna
 		x = y->right;
 	}
 
-	if (x != nullptr) {
+	if (x != nullptr) { //c.d. p2. ustawienie adresu rodzica nowego wezla
 		x->parent = y->parent;
 	}
 
@@ -104,21 +104,21 @@ void BSTTree::deleteNode(int val) { //usuniecie elementu z drzewa BST
 
 BSTTree::Node* BSTTree::findSuccessor(Node* node) {
 
-	if (node->right != nullptr) {
-		return minKey(node->right);
+	if (node->right != nullptr) { //przypadek 1. gdy wezel ma prawego syna
+		return minKey(node->right); //wyszukanie wezla o najmniejszym kluczu w prawym poddrzewie
 	}
 
 	Node* tmp = node->parent;
 
-	while (tmp != nullptr && tmp->left != node) {
+	while (tmp != nullptr && tmp->left != node) { //
 		node = tmp;
 		tmp = tmp->parent;
 	}
 	return tmp;
 }
 
-BSTTree::Node* BSTTree::minKey(Node* node) {
-	while (node->left != nullptr) {
+BSTTree::Node* BSTTree::minKey(Node* node) { //wyszukiwanie minimalnego klucza
+	while (node->left != nullptr) { //dopóki lewy syn istnieje
 		node = node->left;
 	}
 	return node;
@@ -136,45 +136,14 @@ BSTTree::Node* BSTTree::search(Node* node, int key) { //zeby wyswietlilo ze znal
 	return BSTTree::search(node->right, key);
 }
 
-void BSTTree::readData(int* data, int size) {
+void BSTTree::readData(int* data, int size) { //wczytanie danych do BST
 	for (int i = 0; i < size; i++) {
 		add(data[i]);
 	}
 }
 
-void BSTTree::printAsTree() {
-	system("cls");
-	if (root == nullptr) cout << "Drzewo jest puste!" << endl, _getche();
-	else
-	{
-		cout << root->key << "(";
-		if (root->left != nullptr) displayloop(root->left);
-		else cout << "*";
-		cout << ",";
-		if (root->right != nullptr) displayloop(root->right);
-		else cout << "*";
-		cout << ")";
-		_getche();
-	}
-}
 
-void BSTTree::displayloop(Node* out) {
-	system("cls");
-	if (root == nullptr) cout << "Drzewo jest puste!" << endl, _getche();
-	else
-	{
-		cout << root->key << "(";
-		if (root->left != nullptr) displayloop(root->left);
-		else cout << "*";
-		cout << ",";
-		if (root->right != nullptr) displayloop(root->right);
-		else cout << "*";
-		cout << ")";
-		_getche();
-	}
-}
-
-void BSTTree::preorder(Node* node) {
+void BSTTree::preorder(Node* node) { //wyswietlanie elementow kopca metoda preorder
 	if (node == nullptr) return;
 	cout << node->key << " ";
 	preorder(node->left);
@@ -196,6 +165,7 @@ void BSTTree::menu() {
 		cout << endl;
 
 		Node* p;
+		PrintBST pBST;
 
 		switch (option) {
 		case 1:
@@ -209,7 +179,8 @@ void BSTTree::menu() {
 			preorder(root);
 			 break;
 		case 4:
-			printAsTree(); break;
+			pBST.print(root);
+			break;
 		case 5:
 			number = loadNumber();
 			p=search(root, number);
