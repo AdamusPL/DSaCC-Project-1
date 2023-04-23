@@ -15,51 +15,59 @@ struct Node {
 	Node* parent;
 };
 
-void BSTTree::add(int val) { //dodanie elementu do drzewa BST
-	Node* insertNode=new Node;
-	insertNode->key = val;
-	insertNode->left = insertNode->right = NULL;
+void BSTTree::add(int val) {
+	Node* p = new Node;
+	p->key = val;
+	p->left = NULL; //najpierw ustawiamy lewego,prawego syna i rodzica na NULL
+	p->right = NULL;
+	p->parent = NULL;
 
-	Node* y;
-	y = nullptr;
-	Node* x;
-	x = root;
+	if (root == nullptr) { //jesli drzewo nie ma korzenia (jest puste)
+		root = p;
+		return;
+	}
 
-	while (x != nullptr) {
-		y = x;
-		if (insertNode->key < x->key) {
-			x = x->left;
+	Node* temp = root; //wezel do iteracji, zaczynamy od korzenia
+	Node* parentP=new Node; //wezel do zapamietania rodzica nowo wstawianego wezla
+
+	while (temp != NULL) { //dopoki nie dojdziemy do liscia NULL
+		parentP = temp; //rodzicem nowego wezla moze byc aktualnie sprawdzany wezel
+
+		if (p->key < temp->key) { //sprawdzamy czy klucz wstawianego wezla jest rozny od wezla iteracyjnego
+			temp = temp->left; //jesli tak, idziemy w lewo
 		}
-		else x = x->right;
+
+		else temp = temp->right; //w przeciwnym razie w prawo
+
 	}
 
-	insertNode->parent = y;
+	p->parent = parentP; //ustawienie wskaznika na rodzica nowego wezla
 
-	if (y == nullptr) {
-		root = insertNode;
+	if (p->key < parentP->key) { //ustawienie u rodzica jako syna nowo wstawianego wezla
+		parentP->left = p;
 	}
 
-	else {
-		if (insertNode->key < y->key) {
-			y->left = insertNode;
-		}
-		else y->right = insertNode;
-	}
+	else parentP->right = p;
+
 
 }
 
-void BSTTree::deleteNode(Node* root, int val) { //usuniecie elementu z drzewa BST
+void BSTTree::deleteNodeM(int val) {
+
+}
+
+void BSTTree::deleteNode(int val) { //usuniecie elementu z drzewa BST
 	Node* deleteNode = new Node;
 	deleteNode = search(root, val);
 
 	Node* x;
 	Node* y;
 
-	if (deleteNode->left == nullptr || deleteNode->right == nullptr) {
+	if (deleteNode->left == nullptr || deleteNode->right == nullptr) { //przypadek 1., gdy wezel nie ma synow
 		y = deleteNode;
 	}
 
-	else {
+	else { //przypadek 3., gdy wezel ma 2 synow, znajdujemy nastepnika
 		y = findSuccessor(deleteNode);
 	}
 
@@ -118,7 +126,6 @@ BSTTree::Node* BSTTree::minKey(Node* node) {
 
 BSTTree::Node* BSTTree::search(Node* node, int key) { //zeby wyswietlilo ze znalazlo element
 	if (node == nullptr || node->key == key) {
-		if(node->key == key) cout << "Znaleziono klucz o podanej wartosci!" << endl;
 		return node;
 	}
 
@@ -176,7 +183,7 @@ void BSTTree::preorder(Node* node) {
 
 void BSTTree::menu() {
 	int option = 1;
-	while (option != 5) {
+	while (option != 6) {
 		cout << "Co chcesz zrobic:" << endl;
 		cout << "1. Dodac element do BST" << endl;
 		cout << "2. Usunac element z BST" << endl;
@@ -188,23 +195,27 @@ void BSTTree::menu() {
 		int number, index;
 		cout << endl;
 
+		Node* p;
+
 		switch (option) {
 		case 1:
 			number = loadNumber();
 			add(number); break;
 		case 2:
 			number = loadNumber();
-			deleteNode(root, number);
+			deleteNode(number);
 			 break;
 		case 3:
 			preorder(root);
 			 break;
 		case 4:
-			printAsTree();
+			printAsTree(); break;
 		case 5:
 			number = loadNumber();
-			search(root, number);
-			 break;
+			p=search(root, number);
+			if (p == nullptr) cout << "Nie znaleziono klucza o podanej wartosci" << endl;
+			else cout << "Znaleziono klucz: " << number << " w BST" << endl;
+			break;
 		case 6:
 			return;
 		}

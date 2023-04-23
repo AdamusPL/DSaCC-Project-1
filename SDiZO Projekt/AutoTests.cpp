@@ -4,6 +4,7 @@
 #include "DynamicArray.h"
 #include "bidirectionalList.h"
 #include "Heap.h"
+#include "BSTTree.h"
 #include "Time.h"
 
 //-----------------------------------Testy tablicy dynamicznej----------------
@@ -319,6 +320,47 @@ void AutoTests::testHeap() {
 
 }
 
+
+//--------------Testy BST---------------------------
+void AutoTests::testBST() {
+	RandomGenerator rng;
+	RWFile rF;
+	Time timer;
+	double* results = new double[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
+
+	for (int i = 0; i < 10; i++) { //10 testow
+		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+		int size = 0;
+		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+		BSTTree bst;
+		bst.readData(tab, size);
+		timer.startTimer(); //wystartowanie timera
+		bst.add(val);
+		double time = timer.stopTimer(); //zatrzymanie timera
+		results[i] = time;
+		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+	}
+
+	rF.writeResultsToFile("testBSTA.txt", results);
+
+	for (int i = 0; i < 10; i++) { //10 testow
+		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+		int size = 0;
+		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+		BSTTree bst;
+		bst.readData(tab, size);
+		timer.startTimer(); //wystartowanie timera
+		bst.deleteNode(val);
+		double time = timer.stopTimer(); //zatrzymanie timera
+		results[i] = time;
+		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+	}
+
+	rF.writeResultsToFile("testBSTDN.txt", results);
+}
+
 void AutoTests::choice(int option) {
 	switch (option) {
 	case 1:
@@ -327,5 +369,7 @@ void AutoTests::choice(int option) {
 		testBidirectionalList(); break;
 	case 3:
 		testHeap(); break;
+	case 4:
+		testBST(); break;
 	}
 }

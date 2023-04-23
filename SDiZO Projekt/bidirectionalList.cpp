@@ -92,10 +92,10 @@ void bidirectionalList::removeFromEnd() {
 	}
 
 	else {
-		ElemList* previous = tail->prev;
-		free(tail);
-		previous->next = NULL;
-		tail = previous;
+		ElemList* previous = tail->prev; //cofniecie sie do poprzedniego elementu listy
+		free(tail); //zwolnienie pamieci
+		previous->next = NULL; //i ustawienie wskaznika na kolejny element na NULL
+		tail = previous; //poprzedni element listy staje sie ogonem
 		size--;
 	}
 }

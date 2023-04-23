@@ -14,7 +14,8 @@ public:
 	Node* root;
 
 	void add(int);
-	void deleteNode(Node*, int);
+	void deleteNodeM(int);
+	void deleteNode(int);
 	Node* search(Node*, int);
 	Node* findSuccessor(Node*);
 	Node* minKey(Node*);
