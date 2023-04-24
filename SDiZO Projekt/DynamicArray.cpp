@@ -6,6 +6,11 @@ DynamicArray::DynamicArray() {
 	array = new int[size];
 }
 
+DynamicArray::DynamicArray(int *d, int s) {
+	size = s;
+	array = d;
+}
+
 void DynamicArray::addOnStart(int data) {
 	int* tempArray = new int[size + 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 wiêkszym
 	*tempArray = data; //element 0. = data (dodawana wartoœæ)
@@ -23,16 +28,23 @@ void DynamicArray::addOnStart(int data) {
 }
 
 void DynamicArray::removeFromStart() {
-	int* tempArray = new int[size - 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 mniejszym
-	for (size_t i = 0; i < size; i++)
-	{
-		tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+
+	if (size == 0) {
+		cout << "Tablica jest pusta!" << endl;
 	}
-	size--;
 
-	delete[] array;
+	else {
+		int* tempArray = new int[size - 1]; //definicja tymczasowej tablicy dynamicznej o rozmiarze o 1 mniejszym
+		for (size_t i = 0; i < size; i++)
+		{
+			tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
+		size--;
 
-	array = tempArray;
+		delete[] array;
+
+		array = tempArray;
+	}
 }
 
 void DynamicArray::addOnEnd(int data) {
@@ -50,66 +62,85 @@ void DynamicArray::addOnEnd(int data) {
 	delete[] array;
 
 	array = tempArray;
-
 }
 
 void DynamicArray::removeFromEnd() {
-	int* tempArray = new int[size - 1];
-	for (size_t i = 0; i < size - 1; i++)
-	{
-		tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+
+	if (size == 0) {
+		cout << "Tablica jest pusta!" << endl;
 	}
 
-	size--;
+	else {
+		int* tempArray = new int[size - 1];
+		for (size_t i = 0; i < size - 1; i++)
+		{
+			tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
 
-	delete[] array;
+		size--;
 
-	array = tempArray;
+		delete[] array;
+
+		array = tempArray;
+	}
 }
 
 void DynamicArray::insert(int index, int data) {
-	int* tempArray = new int[size + 1];
 
-	for (size_t i = 0; i < index; i++)
-	{
-		tempArray[i] = array[i]; //przypisanie wartosci do tablicy tymczasowej do podanego indeksu
+	if (index > size || index < 0) { //jeœli podano ujemny indeks lub indeks spoza zakresu
+		cout << "Niepoprawny indeks!" << endl;
 	}
 
-	tempArray[index] = data; //wstawienie nowej wartoœci do arraya
+	else {
+		int* tempArray = new int[size + 1];
 
-	for (size_t i = index; i < size; i++)
-	{
-		tempArray[i + 1] = array[i]; //wype³nienie pozosta³ymi
+		for (size_t i = 0; i < index; i++)
+		{
+			tempArray[i] = array[i]; //przypisanie wartosci do tablicy tymczasowej do podanego indeksu
+		}
+
+		tempArray[index] = data; //wstawienie nowej wartoœci do arraya
+
+		for (size_t i = index; i < size; i++)
+		{
+			tempArray[i + 1] = array[i]; //wype³nienie pozosta³ymi
+		}
+
+		size++;
+
+		delete[] array;
+
+		array = tempArray;
 	}
 
-	size++;
-
-	delete[] array;
-
-	array = tempArray;
 }
 
 void DynamicArray::removeFromChosen(int index) {
-	int* tempArray = new int[size - 1];
-	for (size_t i = 0; i < index; i++)
-	{
-		tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+
+	if (index >= size || index < 0) { //jeœli podano ujemny indeks lub spoza zakresu
+		cout << "Niepoprawny indeks!" << endl;
 	}
 
-	size--;
+	else {
+		int* tempArray = new int[size - 1];
+		for (size_t i = 0; i < index; i++)
+		{
+			tempArray[i] = array[i]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
 
-	//6,5,4,3
+		size--;
 
-	for (size_t i = index; i < size; i++)
-	{
-		tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+		for (size_t i = index; i < size; i++)
+		{
+			tempArray[i] = array[i + 1]; //dodanie reszty wartosci do tymczasowej tablicy
+		}
+
+		delete[] array;
+
+		array = tempArray;
 	}
 
-	delete[] array;
-
-	array = tempArray;
 }
-
 
 void DynamicArray::display() {
 	if (size == 0) {
@@ -118,17 +149,46 @@ void DynamicArray::display() {
 	else {
 		for (size_t i = 0; i < size; i++)
 		{
-			cout << array[i] << endl;
+			cout << "t[" << i << "]=" << array[i] << endl;
+			//cout<<*(array+i)<<endl;
+		}
+	}
+	cout << endl << endl;
+}
+
+void DynamicArray::displayTests() {
+	if (size == 0) {
+		cout << "Tablica jest pusta!" << endl;
+	}
+
+	else {
+		for (size_t i = 0; i < size; i++)
+		{
+			cout << array[i] <<" ";
 			//cout<<*(array+i)<<endl;
 		}
 	}
 	cout << endl;
 }
 
+void DynamicArray::find(int val) {
+
+	for (int i = 0; i < size; i++) {
+		if (val == array[i]) {
+			cout << val << " znajduje sie na indeksie: " << i << endl;
+			return;
+		}
+	}
+	
+	cout << "Nie ma takiej wartosci w tablicy!" << endl;
+
+}
+
 void DynamicArray::menu() { //metoda menu
 	int option = 1;
-	while (option != 8) {
+	while (option != 9) {
 		cout << "Co chcesz zrobic:" << endl;
+		cout << "=====================================" << endl;
 		cout << "1. Dodac element na poczatek" << endl;
 		cout << "2. Dodac element na koniec" << endl;
 		cout << "3. Dodac element na konkretne miejsce" << endl;
@@ -136,7 +196,8 @@ void DynamicArray::menu() { //metoda menu
 		cout << "5. Usunac element z konca" << endl;
 		cout << "6. Usunac element z konkretnej pozycji" << endl;
 		cout << "7. Wyswietlic tablice" << endl;
-		cout << "8. Inna struktura danych" << endl;
+		cout << "8. Znajdz element w tablicy" << endl;
+		cout << "9. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -161,7 +222,10 @@ void DynamicArray::menu() { //metoda menu
 			removeFromChosen(index); break;
 		case 7:
 			display(); break;
-		case 8: return;
+		case 8:
+			number = loadNumber();
+			find(number); break;
+		case 9: return;
 		}
 	}
 }

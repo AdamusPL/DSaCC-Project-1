@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "bidirectionalList.h"
 using namespace std;
 
@@ -10,9 +11,16 @@ struct ElemList {
 
 bidirectionalList::bidirectionalList() {
 	size = 0;
+	head = nullptr;
+	tail = nullptr;
 }
 
-ElemList* head = nullptr; //head na poczatku nullptr
+void bidirectionalList::readData(int *tab, int s) { //dodanie elementów do listy z pliku tekstowego, gdy testujemy automatycznie
+	size = s;
+	for (int i = 0; i < s; i++) {
+		addOnStart(tab[i]);
+	}
+}
 
 void bidirectionalList::addOnStart(int data) {
 	ElemList* p = new ElemList; //nowy "wêze³"
@@ -21,16 +29,17 @@ void bidirectionalList::addOnStart(int data) {
 
 	if (head == nullptr) { //jeœli lista jest pusta, tzn. g³owa to nullpointer
 		p->next = NULL; //wsk. na kolejny te¿ NULL
+		head = p; //nowy wêze³ staje siê g³ow¹
+		tail = head;
 	}
 
 	else { //jeœli lista nie jest pusta
 		p->next = head; //wsk. na kolejny element to wskaŸnik na by³¹ g³owê
 		head->prev = p; //ustawienie wskaŸnika na wczeœniejszy element poprzedniej g³owy na nowo dodany wêze³
+		head = p; //nowy wêze³ staje siê g³ow¹
 	}
-
-	head = p; //nowy wêze³ staje siê g³ow¹
+	
 	size++;
-
 }
 
 void bidirectionalList::removeFromStart() {
@@ -60,19 +69,13 @@ void bidirectionalList::addOnEnd(int data) {
 	if (head == nullptr) { //jeœli lista jest pusta, tzn. g³owa to nullpointer
 		p->prev = NULL; //wsk. na poprzedni te¿ NULL
 		head = p; //nowy wêze³ staje siê g³ow¹
+		tail = head;
 	}
 
 	else { //jeœli lista nie jest pusta
-		ElemList* iterator = new ElemList;
-		iterator = head;
-
-		while (iterator->next != NULL) { //dopóki kolejny wêze³ nie jest nullem
-			iterator = iterator->next; //iterujemy do ostatniego elementu w liœcie
-		}
-
-		iterator->next = p; //ustawienie kolejnego elementu listy by³ego poprzedniego ostatniego elementu jako p
-
-		p->prev = iterator; //ustawienie w nowym wêŸle wskaŸnika na poprzedni wêze³
+		p->prev = tail;
+		tail->next = p;
+		tail = p;
 	}
 	size++;
 }
@@ -89,19 +92,21 @@ void bidirectionalList::removeFromEnd() {
 	}
 
 	else {
-		ElemList* iterator = head;
-		while (iterator->next != NULL) { //dopóki kolejny wêze³ nie jest nullem
-			iterator = iterator->next; //iterujemy do ostatniego elementu w liœcie
-		}
-		
-		iterator=iterator->prev;
-		free(iterator->next); //zwolnienie pamiêci z ostatniego elementu listy
-		iterator->next = NULL; //ustawienie wskaŸnika next na NULL
+		ElemList* previous = tail->prev; //cofniecie sie do poprzedniego elementu listy
+		free(tail); //zwolnienie pamieci
+		previous->next = NULL; //i ustawienie wskaznika na kolejny element na NULL
+		tail = previous; //poprzedni element listy staje sie ogonem
 		size--;
 	}
 }
 
 void bidirectionalList::insert(int index, int data) {
+
+	if (index > size || index < 0) {
+		cout << "Niepoprawny indeks!" << endl;
+		return;
+	}
+
 	ElemList* p = new ElemList; //nowy "wêze³"
 	p->data = data;
 
@@ -109,15 +114,16 @@ void bidirectionalList::insert(int index, int data) {
 		p->prev = NULL; //wsk. na poprzedni NULL
 		p->next = NULL; //wsk. na kolejny te¿ NULL
 		head = p; //nowy wêze³ staje siê g³ow¹
+		size++;
 	}
 
 	else {
 		if (index == 0) {
-			addOnStart(data);
+			bidirectionalList::addOnStart(data);
 		}
 
-		else if (index == size - 1) {
-			addOnEnd(data);
+		else if (index == size) {
+			bidirectionalList::addOnEnd(data);
 		}
 
 		else {	
@@ -135,16 +141,20 @@ void bidirectionalList::insert(int index, int data) {
 
 			iterator->next = p; //ustawienie wsk. na kolejny element w wêŸle "na lewo"
 			temp->prev = p; //ustawienie wsk. na poprzedni element w wêŸle "na prawo"
+			size++;
 		}
 	}
-	size++;
 }
 
 
 void bidirectionalList::removeFromChosen(int index) {
 
-	if (head == nullptr) { 
+	if (head == nullptr) { //jeœli g³owa jest pusta
 		cout << "Lista jest pusta!" << endl;
+	}
+
+	else if (index >= size || index<0) { //jeœli podano niepoprawny indeks
+		cout << "Taki indeks w tablicy nie istnieje!" << endl;
 	}
 
 	else {
@@ -169,8 +179,9 @@ void bidirectionalList::removeFromChosen(int index) {
 			free(iterator->next);
 			iterator->next = temp;
 		}
+		size--;
 	}
-	size++;
+
 }
 
 
@@ -187,31 +198,60 @@ void bidirectionalList::displayFromStart() {
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 
 void bidirectionalList::displayFromEnd() {
 	if (head == nullptr) {
 		cout << "Lista jest pusta!" << endl;
 	}
+
 	else {
-		ElemList* iterator = head;
-		while (iterator->next != NULL) {
-			iterator = iterator->next; //przeiterowanie do koñca listy
-		}
+		ElemList* iterator = tail;
 
 		while (iterator != NULL) {
 			cout << iterator->data << " ";
-			iterator = iterator->prev; //cofniecie do poprzedniego wêz³a
+			iterator = iterator->prev;
 		}
 
 		cout << endl;
 	}
+	cout << endl;
+}
+
+void bidirectionalList::find(int val) {
+	int position = 0;
+	ElemList* iterator = new ElemList;
+	iterator = head;
+	while (iterator != NULL) {
+		if (val == iterator->data) {
+			cout << val << " znajduje sie na pozycji: " << position << " od lewej strony" << endl;
+			return;
+		}
+		position++;
+		iterator = iterator->next;
+	}
+	cout << "Taka wartosc nie wystepuje w liscie!" << endl;
+}
+
+int bidirectionalList::middle() {
+	ElemList* iterator = new ElemList;
+	iterator = head;
+	int i = 0;
+
+	while (i != size / 2) {
+		iterator = iterator->next;
+		i++;
+	}
+
+	return iterator->data;
 }
 
 void bidirectionalList::menu() { //metoda menu
 	int option = 1;
-	while (option != 9) {
+	while (option != 10) {
 		cout << "Co chcesz zrobic:" << endl;
+		cout << "=====================================" << endl;
 		cout << "1. Dodac element na poczatek" << endl;
 		cout << "2. Dodac element na koniec" << endl;
 		cout << "3. Dodac element na konkretne miejsce" << endl;
@@ -220,7 +260,8 @@ void bidirectionalList::menu() { //metoda menu
 		cout << "6. Usunac element z konkretnej pozycji" << endl;
 		cout << "7. Wyswietlic liste od poczatku" << endl;
 		cout << "8. Wyswietlic liste od konca" << endl;
-		cout << "9. Inna struktura danych" << endl;
+		cout << "9. Znajdz element w liscie" << endl;
+		cout << "10. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -247,7 +288,10 @@ void bidirectionalList::menu() { //metoda menu
 			displayFromStart(); break;
 		case 8:
 			displayFromEnd(); break;
-		case 9: return;
+		case 9:
+			number = loadNumber();
+			find(number); break;
+		case 10: return;
 		}
 	}
 }

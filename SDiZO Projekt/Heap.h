@@ -6,10 +6,12 @@ public:
 	int size;
 
 	Heap();
-	Heap(int *data, int size);
+	Heap(int*, int);
 	void removeFromPeak();
 	void add(int);
 	void menu();
 	void display();
+	void displayTree();
+	void find(int);
 	int loadNumber();
 };

@@ -1,15 +1,15 @@
 #include <iostream>
+#include <vector>
 #include "Heap.h"
-#include "Tests.h"
 using namespace std;
 
-Heap::Heap() {
+Heap::Heap() { //konstruktor dla kopca do testów manualnych
 	size = 0;
 	data = new int[size];
 	isOccupied = new bool[size];
 }
 
-Heap::Heap(int *d, int s) {
+Heap::Heap(int *d, int s) { //konstruktor dla kopca, gdy wybierzemy testy automatyczne
 	data = d;
 	size = s;
 	isOccupied = new bool[size];
@@ -32,7 +32,7 @@ void Heap::add(int val) {
 
 		tempData[k] = val; //wpisanie nowej wartosci w ostatnie miejsce tablicy
 
-		while (k != 0) {
+		while (k != 0) { //naprawa kopca w górê
 			if (tempData[k] > tempData[(k - 1) / 2]) { //jesli wstawiany wêze³ jest wiêkszy od jego aktualnego ojca
 				swap(tempData[k], tempData[(k - 1) / 2]); //zamieniamy
 				k = (k - 1) / 2;
@@ -48,7 +48,6 @@ void Heap::add(int val) {
 	size++;
 }
 
-//naprawiæ!!!!!!
 void Heap::removeFromPeak() {
 	if (size == 0) { //jeœli rozmiar tablicy = 0
 		cout << "Kopiec jest pusty!" << endl;
@@ -58,23 +57,18 @@ void Heap::removeFromPeak() {
 	int* tempData = new int[size - 1]; //tymczasowa tablica z danymi
 	tempData[0] = data[size-1]; //zamiana korzenia z ostatnim elementem tablicy
 
-	for (size_t i = 1; i < size-2; i++)
+	for (size_t i = 1; i < size-1; i++)
 	{
 		tempData[i] = data[i]; //przekopiowanie pozostalych wartosci z poprzedniego kopca
 	}
 
-	int k = 0;
-	while (k != size - 2) {
+	int k = 0; //naprawa kopca w dó³
+	while (2*k+2<=size-1) { //dopóki nie dotarliœmy do liœcia
 		if ((2 * k + 1 < size-1) && (2 * k + 2 < size-1)) { //jeœli rodzic ma 2 synów
 			if (tempData[2 * k + 1] < tempData[2 * k + 2]) { //jeœli prawy syn wiêkszy
 				if (tempData[k] < tempData[2 * k + 2]) { //jeœli rodzic mniejszy od syna
 					swap(tempData[k], tempData[2 * k + 2]);
 					k = 2 * k + 2;
-					for (size_t i = 0; i < size-1; i++)
-					{
-						cout << "t[" << i << "]=" << data[i] << endl;
-					}
-					cout << endl;
 				}
 				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
 			}
@@ -83,11 +77,6 @@ void Heap::removeFromPeak() {
 				if (tempData[k] < tempData[2 * k + 1]) { //jeœli rodzic mniejszy od syna
 					swap(tempData[k], tempData[2 * k + 1]);
 					k = 2 * k + 1;
-					for (size_t i = 0; i < size-1; i++)
-					{
-						cout << "t[" << i << "]=" << data[i] << endl;
-					}
-					cout << endl;
 				}
 				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
 			}
@@ -110,7 +99,7 @@ void Heap::removeFromPeak() {
 		}
 	}
 
-
+	size--;
 	delete[] data;
 	data = tempData;
 }
@@ -125,16 +114,84 @@ void Heap::display() {
 	{
 		cout << "t[" << i << "]=" << data[i] << endl;
 	}
+	cout << endl;
+}
+
+
+void Heap::displayTree() {
+	if (size == 0) {
+		cout << "Kopiec jest pusty!" << endl;
+		return;
+	}
+
+	int offset = 50;
+	int offsetSmall = 5;
+	int row = 1;
+	int leftSon = 0;
+	int rightSon = 0;
+	bool stop = false;
+
+	for (int j = 0; j < size; j++) {
+		if (rightSon >= size) {
+			rightSon = size - 1;
+			stop = true;
+		}
+
+		for (int k = 0; k < offset; k++) {
+			cout << " ";
+		}
+
+		int loops = 1;
+		for (int k = leftSon; k <= rightSon; k++) {
+			cout << data[k];
+			if (loops % 2 == 0) {
+				for (int i = 0; i < offsetSmall; i++) {
+					cout << " ";
+				}
+			}
+			else {
+				for (int i = 0; i < 20; i++) {
+					cout << " ";
+				}
+			}
+			loops++;
+		}
+
+		leftSon = 2 * leftSon + 1;
+		row *= 2;
+		rightSon += row;
+		offset-=10;
+		offsetSmall--;
+		cout << endl << endl;
+		if (stop) break;
+	}
+	
+
+}
+
+void Heap::find(int val) {
+
+	for (int i = 0; i < size; i++) {
+		if (val == data[i]) {
+			cout << val << " znajduje sie na indeksie: " << i << endl;
+			return;
+		}
+	}
+
+	cout << "Nie ma takiej wartosci w kopcu!" << endl;
 }
 
 void Heap::menu() { //metoda menu
 	int option = 1;
-	while (option != 4) {
+	while (option != 5) {
 		cout << "Co chcesz zrobic:" << endl;
+		cout << "==============================" << endl;
 		cout << "1. Dodac element do kopca" << endl;
 		cout << "2. Usunac szczyt kopca" << endl;
-		cout << "3. Wyswielt elementy kopca" << endl;
-		cout << "4. Inna struktura danych" << endl;
+		cout << "3. Wyswietl elementy kopca" << endl;
+		cout << "4. Wyswietl kopiec jako drzewo" << endl;
+		cout << "5. Znajdz element w kopcu" << endl;
+		cout << "6. Inna struktura danych" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -148,6 +205,11 @@ void Heap::menu() { //metoda menu
 		case 3:
 			display(); break;
 		case 4:
+			displayTree(); break;
+		case 5:
+			number = loadNumber();
+			find(number); break;
+		case 6:
 			return;
 		}
 	}

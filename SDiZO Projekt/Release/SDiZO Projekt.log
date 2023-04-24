@@ -1,0 +1,34 @@
+﻿  AutoTests.cpp
+  ManualTests.cpp
+  RandomGenerator.cpp
+  RWFile.cpp
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\RWFile.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  bidirectionalList.cpp
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\bidirectionalList.cpp(137,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\bidirectionalList.cpp(177,25): warning C4018: '<': signed/unsigned mismatch
+  DynamicArray.cpp
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(18,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(38,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(53,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(75,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(97,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(104,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(126,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(133,28): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\DynamicArray.cpp(150,24): warning C4018: '<': signed/unsigned mismatch
+  Heap.cpp
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Heap.cpp(27,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Heap.cpp(59,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Heap.cpp(71,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Heap.cpp(84,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Heap.cpp(122,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Heap.cpp(150,15): warning C4101: 'index': unreferenced local variable
+  main.cpp
+  Time.cpp
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\Time.cpp(34,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\adamc\Documents\GitHub\SDiZO-Project\SDiZO Projekt\RWFile.cpp(31): warning C4715: 'RWFile::readFromFile': not all control paths return a value
+  All 238 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  SDiZO Projekt.vcxproj -> C:\Users\adamc\Documents\GitHub\SDiZO-Project\Release\SDiZO Projekt.exe

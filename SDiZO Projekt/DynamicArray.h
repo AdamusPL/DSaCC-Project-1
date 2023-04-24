@@ -3,12 +3,13 @@
 using namespace std;
 
 class DynamicArray {
-protected:
+public:
 	int* array;
 	int size;
 
 public:
 	DynamicArray();
+	DynamicArray(int*, int);
 	void addOnStart(int);
 	void removeFromStart();
 	void addOnEnd(int);
@@ -16,6 +17,8 @@ public:
 	void insert(int, int);
 	void removeFromChosen(int);
 	void display();
+	void displayTests();
+	void find(int);
 	void menu();
 	int loadNumber();
 	int loadIndex();
