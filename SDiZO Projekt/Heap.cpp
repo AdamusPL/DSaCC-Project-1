@@ -114,6 +114,7 @@ void Heap::display() {
 	{
 		cout << "t[" << i << "]=" << data[i] << endl;
 	}
+	cout << endl;
 }
 
 
@@ -184,6 +185,7 @@ void Heap::menu() { //metoda menu
 	int option = 1;
 	while (option != 5) {
 		cout << "Co chcesz zrobic:" << endl;
+		cout << "==============================" << endl;
 		cout << "1. Dodac element do kopca" << endl;
 		cout << "2. Usunac szczyt kopca" << endl;
 		cout << "3. Wyswietl elementy kopca" << endl;

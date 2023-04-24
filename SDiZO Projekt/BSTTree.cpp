@@ -60,7 +60,7 @@ void BSTTree::deleteNode(int val) { //usuniecie elementu z drzewa BST
 		return;
 	}
 
-	Node* x;
+	Node* temp;
 	Node* y;
 
 	if (deleteNode->left == nullptr || deleteNode->right == nullptr) { //przypadek 1., gdy wezel nie ma synow
@@ -72,27 +72,27 @@ void BSTTree::deleteNode(int val) { //usuniecie elementu z drzewa BST
 	}
 
 	if (y->left != nullptr) { //przypadek 2., gdy wezel ma tylko lewego syna
-		x = y->left;
+		temp = y->left;
 	}
 
-	else { //c.d. p2. gdy ma tylko prawego syna
-		x = y->right;
+	else {
+		temp = y->right;
 	}
 
-	if (x != nullptr) { //c.d. p2. ustawienie adresu rodzica nowego wezla
-		x->parent = y->parent;
+	if (temp != nullptr) { //c.d. p2. ustawienie adresu rodzica nowego wezla
+		temp->parent = y->parent;
 	}
 
 	if (y->parent == nullptr) {
-		root = x;
+		root = temp;
 	}
 
 	else {
 		if (y == y->parent->left) {
-			y->parent->left = x;
+			y->parent->left = temp;
 		}
 		else {
-			y->parent->right = x;
+			y->parent->right = temp;
 		}
 	}
 
@@ -124,7 +124,7 @@ BSTTree::Node* BSTTree::minKey(Node* node) { //wyszukiwanie minimalnego klucza
 	return node;
 }
 
-BSTTree::Node* BSTTree::search(Node* node, int key) { //zeby wyswietlilo ze znalazlo element
+BSTTree::Node* BSTTree::search(Node* node, int key) { //szukanie klucza o podanej wartosci w drzewie
 	if (node == nullptr || node->key == key) {
 		return node;
 	}
@@ -154,6 +154,7 @@ void BSTTree::menu() {
 	int option = 1;
 	while (option != 6) {
 		cout << "Co chcesz zrobic:" << endl;
+		cout << "====================================" << endl;
 		cout << "1. Dodac element do BST" << endl;
 		cout << "2. Usunac element z BST" << endl;
 		cout << "3. Wyswietl elementy BST (preorder)" << endl;
@@ -177,6 +178,7 @@ void BSTTree::menu() {
 			 break;
 		case 3:
 			preorder(root);
+			cout << endl;
 			 break;
 		case 4:
 			pBST.print(root);

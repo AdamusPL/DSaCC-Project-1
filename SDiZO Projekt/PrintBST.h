@@ -5,8 +5,8 @@ class PrintBST {
 public:
 
 	void printSpace(double, BSTTree::Node*);
-	int heightOfTree(BSTTree::Node*);
-	void printBinaryTree(BSTTree::Node*);
+	int height(BSTTree::Node*);
+	void printBST(BSTTree::Node*);
 	void print(BSTTree::Node*);
 
 };

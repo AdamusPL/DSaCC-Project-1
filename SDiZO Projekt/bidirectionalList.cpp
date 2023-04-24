@@ -198,6 +198,7 @@ void bidirectionalList::displayFromStart() {
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 
 void bidirectionalList::displayFromEnd() {
@@ -215,6 +216,7 @@ void bidirectionalList::displayFromEnd() {
 
 		cout << endl;
 	}
+	cout << endl;
 }
 
 void bidirectionalList::find(int val) {
@@ -249,6 +251,7 @@ void bidirectionalList::menu() { //metoda menu
 	int option = 1;
 	while (option != 10) {
 		cout << "Co chcesz zrobic:" << endl;
+		cout << "=====================================" << endl;
 		cout << "1. Dodac element na poczatek" << endl;
 		cout << "2. Dodac element na koniec" << endl;
 		cout << "3. Dodac element na konkretne miejsce" << endl;

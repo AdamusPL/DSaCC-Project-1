@@ -153,7 +153,7 @@ void DynamicArray::display() {
 			//cout<<*(array+i)<<endl;
 		}
 	}
-	cout << endl;
+	cout << endl << endl;
 }
 
 void DynamicArray::displayTests() {
@@ -188,6 +188,7 @@ void DynamicArray::menu() { //metoda menu
 	int option = 1;
 	while (option != 9) {
 		cout << "Co chcesz zrobic:" << endl;
+		cout << "=====================================" << endl;
 		cout << "1. Dodac element na poczatek" << endl;
 		cout << "2. Dodac element na koniec" << endl;
 		cout << "3. Dodac element na konkretne miejsce" << endl;

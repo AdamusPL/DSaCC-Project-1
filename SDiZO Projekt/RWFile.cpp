@@ -50,10 +50,12 @@ void RWFile::writeResultsToFile(string filename, double* results) { //wypisanie 
 char RWFile::menu() {
 	int optionTest;
 	cout << "Jak chcesz przetestowac dana strukture:" << endl;
+	cout << "=======================================" << endl;
 	cout << "1. Wpisac dane z pliku" << endl;
 	cout << "2. Wpisac dane recznie" << endl;
 	cout << "3. Powrot" << endl;
 	cin >> optionTest;
+	cout << endl;
 	switch (optionTest) {
 	case 1:
 		return 'A'; break;
