@@ -7,11 +7,11 @@ public:
 
 	Heap();
 	Heap(int*, int);
-	void removeFromPeak();
-	void add(int);
+	void deleteRoot();
+	void insert(int);
 	void menu();
-	void display();
-	void displayTree();
-	void find(int);
+	void print();
+	void printTree();
+	void search(int);
 	int loadNumber();
 };

@@ -10,15 +10,15 @@ public:
 public:
 	DynamicArray();
 	DynamicArray(int*, int);
-	void addOnStart(int);
-	void removeFromStart();
-	void addOnEnd(int);
-	void removeFromEnd();
+	void pushFront(int);
+	void popFront();
+	void pushBack(int);
+	void popBack();
 	void insert(int, int);
-	void removeFromChosen(int);
-	void display();
-	void displayTests();
-	void find(int);
+	void removeAt(int);
+	void print();
+	void printTests();
+	void search(int);
 	void menu();
 	int loadNumber();
 	int loadIndex();

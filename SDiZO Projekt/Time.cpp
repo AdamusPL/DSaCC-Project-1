@@ -16,12 +16,12 @@ long long int read_QPC()
 	return((long long int)count.QuadPart);
 }
 
-void Time::startTimer() { //wystartowanie timera
+void Time::startTimer() { //start timer
 	QueryPerformanceFrequency((LARGE_INTEGER*)&frequency);
 	start = read_QPC();
 }
 
-double Time::stopTimer() { //zastopowanie timera i wypisanie up³yniêtego czasu
+double Time::stopTimer() { //stop timer and return elapsed time
 	elapsed = read_QPC() - start;
 	cout << "Time [s] = " << fixed << setprecision(0) << (float)elapsed /
 		frequency << endl;

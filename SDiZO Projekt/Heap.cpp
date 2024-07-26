@@ -3,20 +3,20 @@
 #include "Heap.h"
 using namespace std;
 
-Heap::Heap() { //konstruktor dla kopca do testów manualnych
+Heap::Heap() { //constructor for heap while testing it manually
 	size = 0;
 	data = new int[size];
 	isOccupied = new bool[size];
 }
 
-Heap::Heap(int *d, int s) { //konstruktor dla kopca, gdy wybierzemy testy automatyczne
+Heap::Heap(int *d, int s) { //constructor for heap while testing it automatically
 	data = d;
 	size = s;
 	isOccupied = new bool[size];
 }
 
-void Heap::add(int val) {
-	int* tempData = new int[size+1]; //tymczasowa tablica z danymi
+void Heap::insert(int val) {
+	int* tempData = new int[size+1]; //temporary array with data
 
 	if (size == 0) {
 		*tempData = val;
@@ -27,14 +27,14 @@ void Heap::add(int val) {
 
 		for (size_t i = 0; i < size; i++)
 		{
-			tempData[i] = data[i]; //wpisanie wszystkich wartosci do tempArray
+			tempData[i] = data[i]; //write all values to tempArray
 		}
 
-		tempData[k] = val; //wpisanie nowej wartosci w ostatnie miejsce tablicy
+		tempData[k] = val; //write new value at the end of array
 
-		while (k != 0) { //naprawa kopca w górê
-			if (tempData[k] > tempData[(k - 1) / 2]) { //jesli wstawiany wêze³ jest wiêkszy od jego aktualnego ojca
-				swap(tempData[k], tempData[(k - 1) / 2]); //zamieniamy
+		while (k != 0) { //repair heap upwards
+			if (tempData[k] > tempData[(k - 1) / 2]) { //if new node has larger value than its parent's
+				swap(tempData[k], tempData[(k - 1) / 2]); //swap
 				k = (k - 1) / 2;
 			}
 
@@ -48,54 +48,54 @@ void Heap::add(int val) {
 	size++;
 }
 
-void Heap::removeFromPeak() {
-	if (size == 0) { //jeœli rozmiar tablicy = 0
-		cout << "Kopiec jest pusty!" << endl;
+void Heap::deleteRoot() {
+	if (size == 0) { //if array size = 0
+		cout << "Heap is empty!" << endl;
 		return;
 	}
 
-	int* tempData = new int[size - 1]; //tymczasowa tablica z danymi
-	tempData[0] = data[size-1]; //zamiana korzenia z ostatnim elementem tablicy
+	int* tempData = new int[size - 1]; //temporary array with data
+	tempData[0] = data[size-1]; //swap root with last array element
 
 	for (size_t i = 1; i < size-1; i++)
 	{
-		tempData[i] = data[i]; //przekopiowanie pozostalych wartosci z poprzedniego kopca
+		tempData[i] = data[i]; //copy the rest of values from the previous heap
 	}
 
-	int k = 0; //naprawa kopca w dó³
-	while (2*k+2<=size-1) { //dopóki nie dotarliœmy do liœcia
-		if ((2 * k + 1 < size-1) && (2 * k + 2 < size-1)) { //jeœli rodzic ma 2 synów
-			if (tempData[2 * k + 1] < tempData[2 * k + 2]) { //jeœli prawy syn wiêkszy
-				if (tempData[k] < tempData[2 * k + 2]) { //jeœli rodzic mniejszy od syna
+	int k = 0; //repair heap downwards
+	while (2*k+2<=size-1) { //while we don't reach leaf node
+		if ((2 * k + 1 < size-1) && (2 * k + 2 < size-1)) { //if parent has 2 children
+			if (tempData[2 * k + 1] < tempData[2 * k + 2]) { //if right child has larger value
+				if (tempData[k] < tempData[2 * k + 2]) { //jeœli parent has lower value than child
 					swap(tempData[k], tempData[2 * k + 2]);
 					k = 2 * k + 2;
 				}
-				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
+				else break; //if larger, end repair algorithm
 			}
 
-			else { //jeœli lewy syn wiêkszy
-				if (tempData[k] < tempData[2 * k + 1]) { //jeœli rodzic mniejszy od syna
+			else { //if left child has larger value
+				if (tempData[k] < tempData[2 * k + 1]) { //if parent has lower value than child
 					swap(tempData[k], tempData[2 * k + 1]);
 					k = 2 * k + 1;
 				}
-				else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
+				else break; //if larger, end repair algorithm
 			}
 		}
 
-		else if ((2 * k + 1 >= size - 1) && (2 * k + 2 < size - 1)) { //jeœli tylko prawy syn istnieje
-			if (tempData[k] < tempData[2 * k + 2]) { //jeœli rodzic mniejszy od syna
+		else if ((2 * k + 1 >= size - 1) && (2 * k + 2 < size - 1)) { //if only right child exists
+			if (tempData[k] < tempData[2 * k + 2]) { //if parent has lower value than child
 				swap(tempData[k], tempData[2 * k + 2]);
 				k = 2 * k + 2;
 			}
-			else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
+			else break; //if larger, end repair algorithm
 		}
 
-		else if ((2 * k + 1 < size - 1) && (2 * k + 2 >= size - 1)) { //jeœli tylko lewy syn istnieje
-			if (tempData[k] < tempData[2 * k + 1]) { //jeœli rodzic mniejszy od syna
+		else if ((2 * k + 1 < size - 1) && (2 * k + 2 >= size - 1)) { //if only left child exists
+			if (tempData[k] < tempData[2 * k + 1]) { //if parent has lower value than child
 				swap(tempData[k], tempData[2 * k + 1]);
 				k = 2 * k + 1;
 			}
-			else break; //jeœli wiêkszy, zakoñcz algorytm naprawy
+			else break; //if larger, end repair algorithm
 		}
 	}
 
@@ -104,9 +104,9 @@ void Heap::removeFromPeak() {
 	data = tempData;
 }
 
-void Heap::display() {
+void Heap::print() {
 	if (size == 0) {
-		cout << "Kopiec jest pusty!" << endl;
+		cout << "Heap is empty!" << endl;
 		return;
 	}
 
@@ -118,9 +118,9 @@ void Heap::display() {
 }
 
 
-void Heap::displayTree() {
+void Heap::printTree() {
 	if (size == 0) {
-		cout << "Kopiec jest pusty!" << endl;
+		cout << "Heap is empty!" << endl;
 		return;
 	}
 
@@ -169,29 +169,29 @@ void Heap::displayTree() {
 
 }
 
-void Heap::find(int val) {
+void Heap::search(int val) {
 
 	for (int i = 0; i < size; i++) {
 		if (val == data[i]) {
-			cout << val << " znajduje sie na indeksie: " << i << endl;
+			cout << val << " is in index: " << i << endl;
 			return;
 		}
 	}
 
-	cout << "Nie ma takiej wartosci w kopcu!" << endl;
+	cout << "That value doesn't exist in the heap!" << endl;
 }
 
-void Heap::menu() { //metoda menu
+void Heap::menu() { //menu
 	int option = 1;
 	while (option != 5) {
-		cout << "Co chcesz zrobic:" << endl;
+		cout << "What would you want to do?:" << endl;
 		cout << "==============================" << endl;
-		cout << "1. Dodac element do kopca" << endl;
-		cout << "2. Usunac szczyt kopca" << endl;
-		cout << "3. Wyswietl elementy kopca" << endl;
-		cout << "4. Wyswietl kopiec jako drzewo" << endl;
-		cout << "5. Znajdz element w kopcu" << endl;
-		cout << "6. Inna struktura danych" << endl;
+		cout << "1. Add element to the heap" << endl;
+		cout << "2. Remove heap's root" << endl;
+		cout << "3. Print heap's elements" << endl;
+		cout << "4. Print heap as tree" << endl;
+		cout << "5. Find specific element in the heap" << endl;
+		cout << "6. Choose the other data structure" << endl;
 		cin >> option;
 		int number, index;
 		cout << endl;
@@ -199,25 +199,25 @@ void Heap::menu() { //metoda menu
 		switch (option) {
 		case 1:
 			number = loadNumber();
-			add(number); break;
+			insert(number); break;
 		case 2:
-			removeFromPeak(); break;
+			deleteRoot(); break;
 		case 3:
-			display(); break;
+			print(); break;
 		case 4:
-			displayTree(); break;
+			printTree(); break;
 		case 5:
 			number = loadNumber();
-			find(number); break;
+			search(number); break;
 		case 6:
 			return;
 		}
 	}
 }
 
-int Heap::loadNumber() { //metoda do wpisywania liczb
+int Heap::loadNumber() { //read numbers method
 	int number;
-	cout << "Podaj liczbe: ";
+	cout << "Give the number: ";
 	cin >> number;
 	cout << endl;
 	return number;

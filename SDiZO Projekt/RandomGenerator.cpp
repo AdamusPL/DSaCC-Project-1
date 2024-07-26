@@ -1,7 +1,7 @@
 #include <iostream>
 #include <random>
 #include <fstream>
-#include "RWFile.h"
+#include "FileReaderWriter.h"
 #include "RandomGenerator.h"
 using namespace std;
 
@@ -23,7 +23,7 @@ void RandomGenerator::generatePopulation()
 	filename += ".txt";
 	file.open(filename,ios::out);
 
-	file << TESTS << endl; //wypisanie do pliku ilosci liczb w pliku
+	file << TESTS << endl; //print number of numbers to file
 
 	// 1 and 1000000 inclusive
 	min = INT_MAX;
@@ -36,7 +36,7 @@ void RandomGenerator::generatePopulation()
 			min = val;
 		if (val > max)
 			max = val;
-		file << val << endl; //wypisanie wartosci do pliku
+		file << val << endl; //print values to file
 	}
 
 	cout << "min = " << min << " max = " << max << endl;

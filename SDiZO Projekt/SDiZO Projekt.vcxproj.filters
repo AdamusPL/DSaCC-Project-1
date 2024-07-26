@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bidirectionalList.cpp">
+    <ClCompile Include="DoublyLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DynamicArray.cpp">
@@ -24,7 +24,7 @@
     <ClCompile Include="Heap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RWFile.cpp">
+    <ClCompile Include="FileReaderWriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -42,7 +42,7 @@
     <ClCompile Include="RandomGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BSTTree.cpp">
+    <ClCompile Include="BST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PrintBST.cpp">
@@ -50,7 +50,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bidirectionalList.h">
+    <ClInclude Include="DoublyLinkedList.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="DynamicArray.h">
@@ -59,7 +59,7 @@
     <ClInclude Include="Heap.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="RWFile.h">
+    <ClInclude Include="FileReaderWriter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
@@ -74,7 +74,7 @@
     <ClInclude Include="RandomGenerator.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="BSTTree.h">
+    <ClInclude Include="BST.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="PrintBST.h">

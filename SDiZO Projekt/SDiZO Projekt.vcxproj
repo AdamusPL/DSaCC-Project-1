@@ -128,12 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AutoTests.cpp" />
-    <ClCompile Include="BSTTree.cpp" />
+    <ClCompile Include="BST.cpp" />
     <ClCompile Include="ManualTests.cpp" />
     <ClCompile Include="PrintBST.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
-    <ClCompile Include="RWFile.cpp" />
-    <ClCompile Include="bidirectionalList.cpp" />
+    <ClCompile Include="FileReaderWriter.cpp" />
+    <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
@@ -141,13 +141,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoTests.h" />
-    <ClInclude Include="BSTTree.h" />
+    <ClInclude Include="BST.h" />
     <ClInclude Include="ManualTests.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PrintBST.h" />
     <ClInclude Include="RandomGenerator.h" />
-    <ClInclude Include="RWFile.h" />
-    <ClInclude Include="bidirectionalList.h" />
+    <ClInclude Include="FileReaderWriter.h" />
+    <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Time.h" />

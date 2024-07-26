@@ -4,7 +4,7 @@
 #include "PrintBST.h"
 using namespace std;
 
-void PrintBST::printSpace(double n, BSTTree::Node* deleteNode) //wypisz odstêp
+void PrintBST::printSpace(double n, BST::Node* deleteNode) //print space
 {
     for (; n > 0; n--) {
         cout << "\t";
@@ -18,24 +18,24 @@ void PrintBST::printSpace(double n, BSTTree::Node* deleteNode) //wypisz odstêp
     }
 }
 
-int PrintBST::height(BSTTree::Node* root) //funkcja do liczenia wysokosci drzewa
+int PrintBST::height(BST::Node* root) //maximum tree depth method
 {
-    if (root == nullptr) { //jesli drzewo jest puste
+    if (root == nullptr) { //if tree is empty
         return 0;
     }
-    return 1 + max(height(root->left), height(root->right)); //w przeciwnym razie policz wysokosc drzewa (maksimum wysokosc poddrzewa)
+    return 1 + max(height(root->left), height(root->right)); //otherwise - count tree depth
 }
 
-void PrintBST::printBST(BSTTree::Node* root)
+void PrintBST::printBST(BST::Node* root)
 {
-    queue<BSTTree::Node*> treeLevel, temp; //kolejka
-    treeLevel.push(root); //odlozenie korzenia na stos
-    int i = 0; //licznik
+    queue<BST::Node*> treeLevel, temp; //queue
+    treeLevel.push(root); //put root in queue
+    int i = 0; //counter
     int h = height(root) - 1;
-    double numberOfElements = pow(2, (h + 1)) - 1; //ilosc elementow na danym poziomie drzewa 2^(h+1)-1
+    double numberOfElements = pow(2, (h + 1)) - 1; //no. of elements at the specific level of tree: 2^(h+1)-1
     while (i <= h) {
-        BSTTree::Node* deleteNode = treeLevel.front(); //kolejny element w kolejce
-        treeLevel.pop(); //zdjecie ze stosu
+        BST::Node* deleteNode = treeLevel.front(); //next element in queue
+        treeLevel.pop(); //remove it
         if (temp.empty()) {
             printSpace(numberOfElements / pow(2, i + 1), deleteNode);
         }
@@ -61,7 +61,7 @@ void PrintBST::printBST(BSTTree::Node* root)
     }
 }
 
-void PrintBST::print(BSTTree::Node* root) //wypisz drzewo
+void PrintBST::print(BST::Node* root) //print tree
 {
     printBST(root);
 }

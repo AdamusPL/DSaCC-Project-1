@@ -1,12 +1,12 @@
 #pragma once
-#include "BSTTree.h"
+#include "BST.h"
 
 class PrintBST {
 public:
 
-	void printSpace(double, BSTTree::Node*);
-	int height(BSTTree::Node*);
-	void printBST(BSTTree::Node*);
-	void print(BSTTree::Node*);
+	void printSpace(double, BST::Node*);
+	int height(BST::Node*);
+	void printBST(BST::Node*);
+	void print(BST::Node*);
 
 };

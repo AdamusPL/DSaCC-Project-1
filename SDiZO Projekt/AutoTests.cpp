@@ -1,356 +1,339 @@
 #include "AutoTests.h"
 #include "RandomGenerator.h"
-#include "RWFile.h"
+#include "FileReaderWriter.h"
 #include "DynamicArray.h"
-#include "bidirectionalList.h"
+#include "DoublyLinkedList.h"
 #include "Heap.h"
-#include "BSTTree.h"
+#include "BST.h"
 #include "Time.h"
 
-//-----------------------------------Testy tablicy dynamicznej----------------
+//-------------------Dynamic Array tests----------------
 void AutoTests::testDynamicArray() {
 	RandomGenerator rng;
-	RWFile rF;
+	FileReaderWriter fRW;
 	Time timer;
-	double* results = new double[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
+	double* results = new double[10]; //array for test results whose elements will be written to the .txt file
 
-	//addOnStart
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//pushFront()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab=rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab=fRW.readFromFile(size); //read .txt content
 		DynamicArray arr = DynamicArray(tab,size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
-		arr.addOnStart(val);
-		int time = timer.stopTimer(); //zatrzymanie timera
+		int val = rng.generateRandomNumber(); //random values which will be written to dynamic array
+		timer.startTimer(); //start timer
+		arr.pushFront(val);
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
 	}
 
-	rF.writeResultsToFile("testArrayAOS.txt", results);
+	fRW.writeResultsToFile("testArrayPushFront.txt", results);
 
-	//removeFromStart
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//popFront()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		DynamicArray arr = DynamicArray(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		arr.removeFromStart();
-		int time = timer.stopTimer(); //zatrzymanie timera
+		timer.startTimer(); //start timer
+		arr.popFront();
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testArrayRFS.txt", results);
+	fRW.writeResultsToFile("testArrayPopFront.txt", results);
 
-	//addOnEnd
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//pushEnd()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		DynamicArray arr = DynamicArray(tab, size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
-		arr.addOnEnd(val);
-		int time = timer.stopTimer(); //zatrzymanie timera
+		int val = rng.generateRandomNumber(); //generate random values to write to array
+		timer.startTimer(); //start timer
+		arr.pushBack(val);
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testArrayAOE.txt", results);
+	fRW.writeResultsToFile("testArrayPushBack.txt", results);
 
-	//removeFromEnd
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//popEnd()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		DynamicArray arr = DynamicArray(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		arr.removeFromEnd();
-		int time = timer.stopTimer(); //zatrzymanie timera
+		timer.startTimer(); //start timer
+		arr.popBack();
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testArrayRFE.txt", results);
+	fRW.writeResultsToFile("testArrayPopBack.txt", results);
 
-	//insert
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//insert()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		DynamicArray arr = DynamicArray(tab, size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
+		int val = rng.generateRandomNumber(); //generate random values to write to array
+		timer.startTimer(); //start timer
 		arr.insert(arr.size/2,val);
-		int time = timer.stopTimer(); //zatrzymanie timera
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testArrayI.txt", results);
+	fRW.writeResultsToFile("testArrayInsert.txt", results);
 
-	//removeFromChosen
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//removeAt()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		DynamicArray arr = DynamicArray(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		arr.removeFromChosen(arr.size/2);
-		int time = timer.stopTimer(); //zatrzymanie timera
+		timer.startTimer(); //start timer
+		arr.removeAt(arr.size/2);
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testArrayRFC.txt", results);
+	fRW.writeResultsToFile("testArrayRemoveAt.txt", results);
 
-	//find naprawic jeszcze bo nie zawsze srodkowy element wyszukuje, przez to ze czasem jest kilka kluczy o tych samych wartosciach w strukturze
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//search()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		DynamicArray arr = DynamicArray(tab, size);
-		cout << "Rozmiar tablicy: " << arr.size << endl;
-		int val = arr.array[arr.size / 2]; //œrodkowy element tablicy zeby znalazl
-		timer.startTimer(); //wystartowanie timera
-		arr.find(val);
-		int time = timer.stopTimer(); //zatrzymanie timera
+		cout << "Array size: " << arr.size << endl;
+		int val = arr.array[arr.size / 2]; //to make it find middle element of array
+		timer.startTimer(); //start timer
+		arr.search(val);
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testArrayF.txt", results);
+	fRW.writeResultsToFile("testArraySearch.txt", results);
 }
 
-
-
-
-
-
-
-
-//-----------------Testy listy dwukierunkowej---------------
-void AutoTests::testBidirectionalList() { //pozmieniac na biL
+//-----------------Doubly Linked List tests---------------
+void AutoTests::testDoublyLinkedList() {
 	RandomGenerator rng;
-	RWFile rF;
+	FileReaderWriter fRW;
 	Time timer;
-	double* results = new double[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
+	double* results = new double[10]; //array for test results whose elements will be written to the .txt file
 
-	//addOnStart
-	for (int i = 0; i < 1; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//pushFront()
+	for (int i = 0; i < 1; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab=rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab,size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
-		biL.addOnStart(val);
-		double time = timer.stopTimer(); //zatrzymanie timera
+		int* tab=fRW.readFromFile(size); //read .txt content
+		DoublyLinkedList dLL;
+		dLL.readData(tab,size);
+		int val = rng.generateRandomNumber(); //generate random values to write to array
+		timer.startTimer(); //start timer
+		dLL.pushFront(val);
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBiLAOS.txt", results);
+	fRW.writeResultsToFile("testDoublyLinkedListPushFront.txt", results);
 
-	//removeFromStart
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//popFront()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		biL.removeFromStart();
-		double time = timer.stopTimer(); //zatrzymanie timera
+		int* tab = fRW.readFromFile(size); //read .txt content
+		DoublyLinkedList dLL;
+		dLL.readData(tab, size);
+		timer.startTimer(); //start timer
+		dLL.popFront();
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBiLRFS.txt", results);
+	fRW.writeResultsToFile("testDoublyLinkedListPopFront.txt", results);
 
-	//addOnEnd
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//pushBack()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab, size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
-		biL.addOnEnd(val);
-		double time = timer.stopTimer(); //zatrzymanie timera
+		int* tab = fRW.readFromFile(size); //read .txt content
+		DoublyLinkedList dLL;
+		dLL.readData(tab, size);
+		int val = rng.generateRandomNumber(); //generate random values to write to array
+		timer.startTimer(); //start timer
+		dLL.pushBack(val);
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBiLAOE.txt", results);
+	fRW.writeResultsToFile("testDoublyLinkedListPushBack.txt", results);
 
-	//removeFromEnd
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//popBack()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		biL.removeFromEnd();
-		double time = timer.stopTimer(); //zatrzymanie timera
+		int* tab = fRW.readFromFile(size); //read .txt content
+		DoublyLinkedList dLL;
+		dLL.readData(tab, size);
+		timer.startTimer(); //start timer
+		dLL.popBack();
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBiLRFE.txt", results);
+	fRW.writeResultsToFile("testDoublyLinkedListPopBack.txt", results);
 
-	//insert
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//insert()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab, size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
-		biL.insert(biL.size/2,val);
-		double time = timer.stopTimer(); //zatrzymanie timera
+		int* tab = fRW.readFromFile(size); //read .txt content
+		DoublyLinkedList dLL;
+		dLL.readData(tab, size);
+		int val = rng.generateRandomNumber(); //generate random values to write to array
+		timer.startTimer(); //start timer
+		dLL.insert(dLL.size/2,val);
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBiLI.txt", results);
+	fRW.writeResultsToFile("testDoublyLinkedListInsert.txt", results);
 
-	//removeFromChosen
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//removeAt()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		biL.removeFromChosen(biL.size/2);
-		double time = timer.stopTimer(); //zatrzymanie timera
+		int* tab = fRW.readFromFile(size); //read .txt content
+		DoublyLinkedList dLL;
+		dLL.readData(tab, size);
+		timer.startTimer(); //start timer
+		dLL.removeAt(dLL.size/2);
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBiLRFC.txt", results);
+	fRW.writeResultsToFile("testDoublyLinkedListRemoveAt.txt", results);
 
-	//find
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//search()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		bidirectionalList biL;
-		biL.readData(tab, size);
-		int val = biL.middle(); //œrodkowy element tablicy zeby znalazl
-		timer.startTimer(); //wystartowanie timera
-		biL.find(val);
-		double time = timer.stopTimer(); //zatrzymanie timera
+		int* tab = fRW.readFromFile(size); //read .txt content
+		DoublyLinkedList dLL;
+		dLL.readData(tab, size);
+		int val = dLL.middle(); //in order to find middle element from list
+		timer.startTimer(); //start timer
+		dLL.search(val);
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBiLF.txt", results);
+	fRW.writeResultsToFile("testDoublyLinkedListFind.txt", results);
 }
 
-
-
-
-
-
-
-
-
-//-----------Testy kopca-------------------
+//-----------Heap tests-------------------
 void AutoTests::testHeap() {
 	RandomGenerator rng;
-	RWFile rF;
+	FileReaderWriter fRW;
 	Time timer;
-	double* results = new double[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
+	double* results = new double[10]; //array for test results whose elements will be written to the .txt file
 
-	//add
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//insert()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		Heap h = Heap(tab, size);
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		timer.startTimer(); //wystartowanie timera
-		h.add(val);
-		int time = timer.stopTimer(); //zatrzymanie timera
+		int val = rng.generateRandomNumber(); //generate random values to write to array
+		timer.startTimer(); //start timer
+		h.insert(val);
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testHeapA.txt", results);
+	fRW.writeResultsToFile("testHeapInsert.txt", results);
 
-	//removeFromPeak
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//deleteRoot()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		Heap h = Heap(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		h.removeFromPeak();
-		int time = timer.stopTimer(); //zatrzymanie timera
+		timer.startTimer(); //start timer
+		h.deleteRoot();
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testHeapRFP.txt", results);
+	fRW.writeResultsToFile("testHeapDeleteRoot.txt", results);
 
-	//find
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	//search()
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
+		int* tab = fRW.readFromFile(size); //read .txt content
 		Heap h = Heap(tab, size);
-		timer.startTimer(); //wystartowanie timera
+		timer.startTimer(); //start timer
 		int val = h.data[h.size / 2];
-		h.find(val);
-		int time = timer.stopTimer(); //zatrzymanie timera
+		h.search(val);
+		int time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testHeapF.txt", results);
+	fRW.writeResultsToFile("testHeapSearch.txt", results);
 
 }
 
-
-//--------------Testy BST---------------------------
+//--------------BST Tests---------------------------
 void AutoTests::testBST() {
 	RandomGenerator rng;
-	RWFile rF;
+	FileReaderWriter fRW;
 	Time timer;
-	double* results = new double[10]; //tablica na rezultaty testow, ktora potem zostanie wpisana do pliku txt
+	double* results = new double[10]; //array for test results whose elements will be written to the .txt file
 
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
-		BSTTree bst;
+		int* tab = fRW.readFromFile(size); //read .txt content
+		int val = rng.generateRandomNumber(); //generate random values to write to array
+		BST bst;
 		bst.readData(tab, size);
-		timer.startTimer(); //wystartowanie timera
-		bst.add(val);
-		double time = timer.stopTimer(); //zatrzymanie timera
+		timer.startTimer(); //start timer
+		bst.insert(val);
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBSTA.txt", results);
+	fRW.writeResultsToFile("testBSTInsert.txt", results);
 
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+		int* tab = fRW.readFromFile(size); //read .txt content
+		int val = rng.generateRandomNumber(); //generate random values to write to array
 		bool found = false;
-		while (!found) { //dopoki nie znajdzie wylosowanej wartosci w danych
+		while (!found) { //while random generated value is not found in data
 			val = rng.generateRandomNumber();
 			for (int i = 0; i < size; i++) {
 				if (tab[i] == val) {
@@ -359,24 +342,24 @@ void AutoTests::testBST() {
 				}
 			}
 		}
-		BSTTree bst;
+		BST bst;
 		bst.readData(tab, size);
-		timer.startTimer(); //wystartowanie timera
+		timer.startTimer(); //start timer
 		bst.deleteNode(val);
-		double time = timer.stopTimer(); //zatrzymanie timera
+		double time = timer.stopTimer(); //stop timer
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBSTDN.txt", results);
+	fRW.writeResultsToFile("testBSTDeleteNode.txt", results);
 
-	for (int i = 0; i < 10; i++) { //10 testow
-		rng.generatePopulation(); //stworzenie pliku txt z losowymi liczbami
+	for (int i = 0; i < 10; i++) { //10 tests
+		rng.generatePopulation(); //create .txt file with random numbers
 		int size = 0;
-		int* tab = rF.readFromFile(size); //wczytanie zawartosci tego txt
-		int val = rng.generateRandomNumber(); //wylosowanie wartosci do wpisania do tablicy
+		int* tab = fRW.readFromFile(size); //read .txt content
+		int val = rng.generateRandomNumber(); //generate random values to write to array
 		bool found = false;
-		while (!found) { //dopoki nie znajdzie wylosowanej wartosci w danych
+		while (!found) { //while random generated value is not found in data
 			val = rng.generateRandomNumber();
 			for (int i = 0; i < size; i++) {
 				if (tab[i] == val) {
@@ -385,18 +368,18 @@ void AutoTests::testBST() {
 				}
 			}
 		}
-		BSTTree bst;
+		BST bst;
 		bst.readData(tab, size);
-		BSTTree::Node* p;
-		timer.startTimer(); //wystartowanie timera
+		BST::Node* p;
+		timer.startTimer(); //start timer
 		p=bst.search(bst.root, val);
-		double time = timer.stopTimer(); //zatrzymanie timera
-		if (p != nullptr) cout << "Znaleziono " << val << " w BST" << endl;
+		double time = timer.stopTimer(); //stop timer
+		if (p != nullptr) cout << "Found " << val << " in BST" << endl;
 		results[i] = time;
-		//arr.displayTests(); //wyswietlenie zawartosci tablicy
+
 	}
 
-	rF.writeResultsToFile("testBSTS.txt", results);
+	fRW.writeResultsToFile("testBSTSearch.txt", results);
 }
 
 void AutoTests::choice(int option) {
@@ -404,7 +387,7 @@ void AutoTests::choice(int option) {
 	case 1:
 		testDynamicArray(); break;
 	case 2:
-		testBidirectionalList(); break;
+		testDoublyLinkedList(); break;
 	case 3:
 		testHeap(); break;
 	case 4:
